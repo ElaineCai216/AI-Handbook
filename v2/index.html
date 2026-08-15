@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 时代个人说明书 · 插画版 · 蔡依凌（Elaine）</title>
+<style>
+:root{
+  --sky1:#16223f; --sky2:#2b3b68; --sky3:#44527f;
+  --cream:#fff6df; --cream2:#ffe9bd;
+  --ink:#25231d;
+  --leaf:#8cc084; --leaf2:#4c8a5a; --leaf3:#2f5d3b;
+  --mint:#a9e5cf;
+  --pink:#ef779d; --pink2:#d75a86;
+  --orange:#ffb25e; --orange2:#f58b2a;
+  --blue:#8090df; --gold:#ffd98a;
+  --card:#fffdf4;
+  --line:rgba(37,35,29,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 55%,var(--sky3) 100%);
+  color:var(--cream); overflow:hidden; position:relative;
+  cursor:crosshair;
+}
+::selection{background:rgba(255,217,138,.35)}
+
+/* ---- star field ---- */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.moon{position:fixed;top:5vh;right:7vw;z-index:2;width:min(17vw,150px);aspect-ratio:1;pointer-events:none;
+  filter:drop-shadow(0 0 24px rgba(255,236,180,.55));animation:mfloat 7s ease-in-out infinite}
+@keyframes mfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---- mouse light ---- */
+#light{
+  position:fixed;inset:0;z-index:4;pointer-events:none;
+  background:
+    radial-gradient(240px circle at var(--mx,50%) var(--my,40%), rgba(255,244,214,.28), transparent 70%),
+    radial-gradient(640px circle at var(--mx,50%) var(--my,40%), rgba(255,236,180,.13), transparent 60%);
+  mix-blend-mode:screen;
+  transition:background .08s linear;
+}
+#light.soft{background:none}
+
+/* ---- cover ---- */
+#cover{
+  position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 120% at 50% 15%,#223058 0%,#101a31 75%);
+  cursor:pointer;transition:opacity .8s ease,visibility .8s;overflow:hidden;
+}
+#cover.hide{opacity:0;visibility:hidden;pointer-events:none}
+#cover .sky{position:absolute;inset:0;pointer-events:none}
+#cover .inner{position:relative;text-align:center;padding:24px;animation:rise 1.1s cubic-bezier(.22,.9,.35,1) both;z-index:3}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+#cover .kicker{font-size:12px;letter-spacing:.45em;color:rgba(255,246,223,.72);margin-bottom:16px}
+#cover h1{font-size:clamp(36px,8vw,72px);font-weight:900;letter-spacing:.12em;color:var(--cream);
+  text-shadow:0 4px 0 rgba(0,0,0,.25),0 0 34px rgba(255,217,138,.35)}
+#cover .sub{margin-top:12px;font-size:clamp(15px,2.6vw,20px);letter-spacing:.3em;color:var(--gold)}
+#cover .meta{margin-top:26px;font-size:13px;color:rgba(255,246,223,.66);letter-spacing:.14em}
+#cover .enter{
+  margin:38px auto 0;display:inline-flex;align-items:center;gap:10px;padding:14px 40px;border-radius:999px;
+  border:2px solid var(--gold);color:var(--ink);background:linear-gradient(180deg,var(--gold),var(--orange));
+  font-size:16px;font-weight:800;letter-spacing:.3em;box-shadow:0 8px 0 rgba(0,0,0,.25),0 0 30px rgba(255,217,138,.35);
+  transition:transform .15s ease,box-shadow .15s ease;animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#cover .enter:hover{transform:translateY(-2px) scale(1.04)}
+
+/* ---- header ---- */
+header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:12px;padding:14px 20px;
+  background:linear-gradient(180deg,rgba(16,24,43,.72),transparent)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.1em;white-space:nowrap}
+.brand .star{color:var(--gold);font-size:16px;filter:drop-shadow(0 0 6px rgba(255,217,138,.8))}
+.brand .en{font-size:10px;color:rgba(255,246,223,.6);font-weight:400}
+.spacer{flex:1}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;background:rgba(255,246,223,.08);border:1px solid rgba(255,246,223,.35);
+  color:var(--cream);font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;transition:.25s;backdrop-filter:blur(6px);
+}
+.chip:hover{background:rgba(255,217,138,.16);border-color:var(--gold);color:var(--gold)}
+.chip.on{border-color:var(--gold);color:var(--gold);background:rgba(255,217,138,.14);box-shadow:0 0 14px rgba(255,217,138,.3)}
+.chip .eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+.chip .eq i{width:3px;background:currentColor;border-radius:2px;height:4px}
+.chip.on .eq i{animation:eqb 1.1s ease-in-out infinite}
+.chip.on .eq i:nth-child(2){animation-delay:.18s}.chip.on .eq i:nth-child(3){animation-delay:.36s}
+@keyframes eqb{0%,100%{height:4px}50%{height:12px}}
+
+/* ---- scene ---- */
+#scene{position:fixed;inset:0;z-index:6}
+.scene-title{
+  position:absolute;top:9vh;left:0;right:0;text-align:center;z-index:5;pointer-events:none;
+}
+.scene-title h2{font-size:clamp(22px,4.4vw,38px);font-weight:900;letter-spacing:.16em;color:var(--cream);
+  text-shadow:0 3px 0 rgba(0,0,0,.28),0 0 26px rgba(255,217,138,.4)}
+.scene-title p{margin-top:6px;font-size:clamp(11px,1.8vw,13px);letter-spacing:.3em;color:rgba(255,246,223,.7)}
+
+/* scenery */
+.land{position:absolute;left:0;right:0;bottom:0;z-index:1;pointer-events:none;line-height:0}
+.land svg{width:100%;height:auto;display:block}
+.house{position:absolute;left:7%;bottom:9vh;z-index:3;width:min(24vw,190px);pointer-events:auto;
+  cursor:pointer;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28));transition:transform .3s ease}
+.house:hover{transform:translateY(-4px) scale(1.03)}
+.house .door{animation:doorGlow 2.6s ease-in-out infinite}
+@keyframes doorGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(255,217,138,.55))}50%{filter:drop-shadow(0 0 18px rgba(255,217,138,.95))}}
+.house-label{position:absolute;left:50%;top:-24px;transform:translateX(-50%);font-size:12px;letter-spacing:.2em;
+  color:var(--gold);background:rgba(22,26,44,.55);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tree{position:absolute;bottom:6vh;z-index:2;pointer-events:none}
+.tree svg{width:100%;height:auto}
+
+/* lantern buttons */
+.lantern{position:absolute;z-index:8;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;padding:0;color:inherit;font-family:inherit}
+.lantern .glow{width:clamp(44px,6.5vw,64px);aspect-ratio:1;display:grid;place-items:center;border-radius:50%;
+  position:relative;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.lantern .glow svg{width:78%;height:78%;position:relative;z-index:2}
+.lantern .glow::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(255,217,138,.5),transparent 68%);filter:blur(2px);animation:lanternPulse 2.8s ease-in-out infinite}
+.lantern .glow::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:14px;background:linear-gradient(rgba(255,246,223,.6),transparent)}
+@keyframes lanternPulse{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.08)}}
+.lantern:hover .glow{transform:translateY(-5px) scale(1.12)}
+.lantern:active .glow{transform:scale(.92)}
+.lantern .lab{font-size:clamp(10px,1.6vw,12px);letter-spacing:.14em;color:var(--cream);background:rgba(20,26,48,.5);
+  padding:2px 9px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(4px)}
+.lantern .no{font-size:clamp(12px,1.8vw,15px);font-weight:900;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.3s}
+#modal.on{opacity:1;visibility:visible}
+#modal .backdrop{position:absolute;inset:0;background:rgba(12,16,30,.66);backdrop-filter:blur(6px)}
+.modal-card{
+  position:relative;z-index:2;width:min(640px,94vw);max-height:82vh;display:flex;flex-direction:column;
+  background:var(--card);color:var(--ink);border-radius:26px;overflow:hidden;
+  box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 0 6px rgba(255,217,138,.35);
+  transform:translateY(24px) scale(.94);transition:transform .35s cubic-bezier(.34,1.4,.64,1);
+}
+#modal.on .modal-card{transform:none}
+.m-head{position:relative;padding:24px 26px 18px;color:var(--cream);overflow:hidden}
+.m-head::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--mc,#8090df),#2b3b68);z-index:0}
+.m-head .shape{position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12);z-index:0}
+.m-no{position:relative;z-index:1;font-size:12px;letter-spacing:.3em;opacity:.9}
+.m-title{position:relative;z-index:1;font-size:clamp(22px,4.6vw,30px);font-weight:900;margin-top:4px;letter-spacing:.06em}
+.m-sub{position:relative;z-index:1;font-size:13px;margin-top:6px;opacity:.85}
+.m-body{padding:20px 26px 26px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.m-body::-webkit-scrollbar{width:5px}
+.m-body::-webkit-scrollbar-thumb{background:rgba(37,35,29,.25);border-radius:4px}
+.m-h{font-size:16px;font-weight:800;color:var(--mc,#8090df);display:flex;align-items:center;gap:9px;margin-top:4px}
+.m-h::before{content:"";width:16px;height:3px;border-radius:3px;background:var(--mc,#8090df)}
+.m-p{line-height:1.85;font-size:14.5px;text-align:justify}
+.m-p .hl{color:var(--mc,#8090df);font-weight:700}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.m-grid{grid-template-columns:1fr}}
+.m-cell{background:rgba(128,144,223,.08);border:1px solid rgba(37,35,29,.12);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.7}
+.m-cell b{display:block;color:var(--mc,#8090df);font-weight:800;margin-bottom:3px}
+.m-quote{border-left:4px solid var(--mc,#8090df);background:rgba(255,246,223,.55);padding:12px 16px;border-radius:0 14px 14px 0;font-size:14px;line-height:1.8;color:#4a4638}
+.m-close{
+  position:absolute;right:14px;top:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.18);color:var(--cream);font-size:18px;cursor:pointer;transition:.2s;backdrop-filter:blur(4px);
+}
+.m-close:hover{background:rgba(255,255,255,.32);transform:rotate(90deg)}
+
+/* overview */
+#map{position:fixed;inset:0;z-index:55;background:rgba(10,14,26,.7);backdrop-filter:blur(12px);display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.3s}
+#map.on{opacity:1;visibility:visible}
+.map-inner{width:min(760px,94vw);max-height:84vh;overflow:auto;text-align:center}
+.map-inner h3{font-size:22px;letter-spacing:.2em;margin-bottom:18px;color:var(--cream);font-weight:900}
+.map-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.map-item{background:rgba(255,246,223,.08);border:1px solid rgba(255,246,223,.3);border-radius:18px;padding:16px 12px;cursor:pointer;transition:.25s;color:var(--cream);text-align:left}
+.map-item:hover{background:rgba(255,217,138,.16);border-color:var(--gold);transform:translateY(-4px)}
+.map-item .n{font-size:11px;letter-spacing:.25em;color:var(--gold);font-weight:800}
+.map-item .t{font-size:15px;font-weight:800;margin-top:6px}
+.map-item .d{font-size:11.5px;color:rgba(255,246,223,.65);margin-top:5px;line-height:1.6}
+.map-close{position:absolute;right:20px;top:16px;background:none;border:1px solid rgba(255,246,223,.4);color:var(--cream);width:38px;height:38px;border-radius:50%;font-size:17px;cursor:pointer}
+.map-close:hover{border-color:var(--gold);color:var(--gold)}
+
+/* footer */
+footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 20px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:linear-gradient(0deg,rgba(12,17,32,.7),transparent)}
+.hint{font-size:11px;letter-spacing:.16em;color:rgba(255,246,223,.66);display:flex;gap:14px;align-items:center}
+.hint kbd{border:1px solid rgba(255,246,223,.35);border-radius:6px;padding:1px 7px;font-size:10.5px;color:var(--cream);background:rgba(255,255,255,.06);font-family:inherit}
+.dots{display:flex;gap:8px;align-items:center}
+.dot-btn{width:9px;height:9px;border-radius:50%;background:rgba(255,246,223,.25);border:none;cursor:pointer;transition:.3s;padding:0}
+.dot-btn.on{background:var(--gold);box-shadow:0 0 10px var(--gold);transform:scale(1.3)}
+
+/* scene entrance anim */
+.lantern{opacity:0;transform:translateY(16px)}
+.lantern.in{animation:lanternIn .7s cubic-bezier(.34,1.4,.64,1) forwards}
+@keyframes lanternIn{to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="moon">
+  <svg viewBox="0 0 100 100" width="100%" height="100%">
+    <defs>
+      <radialGradient id="moonG" cx="35%" cy="35%" r="80%">
+        <stop offset="0%" stop-color="#fff7d6"/><stop offset="70%" stop-color="#ffe1a0"/><stop offset="100%" stop-color="#f7c873"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="42" fill="url(#moonG)"/>
+    <circle cx="36" cy="40" r="7" fill="#f0bd6f" opacity=".55"/>
+    <circle cx="62" cy="58" r="5" fill="#f0bd6f" opacity=".45"/>
+    <circle cx="55" cy="32" r="3.4" fill="#f0bd6f" opacity=".4"/>
+    <circle cx="41" cy="64" r="4.4" fill="#f0bd6f" opacity=".5"/>
+    <path d="M30 74 Q50 88 72 76" stroke="#e8b25c" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/>
+  </svg>
+</div>
+<div id="light"></div>
+
+<!-- Cover -->
+<div id="cover">
+  <div class="sky">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" width="100%" height="100%">
+      <path d="M0 640 Q180 540 380 610 Q560 670 760 590 Q980 500 1160 590 Q1320 660 1440 620 L1440 900 L0 900Z" fill="#27425f" opacity=".55"/>
+      <path d="M0 700 Q240 610 500 690 Q760 760 980 670 Q1200 600 1440 680 L1440 900 L0 900Z" fill="#2f5d3b" opacity=".8"/>
+      <path d="M0 760 Q260 700 560 770 Q820 830 1080 740 Q1280 680 1440 740 L1440 900 L0 900Z" fill="#4c8a5a"/>
+    </svg>
+  </div>
+  <div class="inner">
+    <div class="kicker">北辰青年 · AI 时代个人说明书 · 插画版</div>
+    <h1>AI 时代<br>个人说明书</h1>
+    <div class="sub">蔡依凌 · Elaine</div>
+    <div class="meta">香港大学 · 数学 · 统计 · 上海 ⇄ 香港</div>
+    <div class="enter">进入花园 →</div>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="brand"><span class="star">✦</span><span>Elaine 的个人说明书</span><span class="en">ILLUSTRATED EDITION</span></div>
+  <div class="spacer"></div>
+  <button class="chip" id="musicBtn" title="背景音乐"><span class="eq"><i></i><i></i><i></i></span>音乐</button>
+  <button class="chip" id="mapBtn" title="花园地图">🗺️ 地图</button>
+</header>
+
+<!-- Scene -->
+<main id="scene">
+  <div class="scene-title">
+    <h2>夜航 · 花园</h2>
+    <p>移动光标 · 点亮花园 · 点击发光的灯笼</p>
+  </div>
+  <div class="land">
+    <svg viewBox="0 0 1440 360" preserveAspectRatio="none" width="100%" height="100%">
+      <path d="M0 360 L0 250 Q180 170 360 240 Q520 300 700 230 Q880 160 1060 235 Q1220 295 1440 225 L1440 360Z" fill="#2f5d3b" opacity=".85"/>
+      <path d="M0 360 L0 290 Q200 230 420 290 Q640 350 900 280 Q1120 215 1440 285 L1440 360Z" fill="#3d7a49"/>
+      <path d="M0 360 L0 320 Q260 280 560 330 Q820 372 1120 320 Q1300 285 1440 325 L1440 360Z" fill="#4c8a5a"/>
+    </svg>
+  </div>
+  <!-- house (section 08) -->
+  <button class="house" id="houseBtn" title="终点站">
+    <span class="house-label">🏠 终点站 · 想对你说</span>
+    <svg viewBox="0 0 200 150" width="100%">
+      <path d="M20 78 L100 22 L180 78Z" fill="#e07b4f"/>
+      <path d="M20 78 L100 22 L180 78 L176 84 L100 30 L24 84Z" fill="#c95f36"/>
+      <rect x="38" y="76" width="124" height="60" rx="6" fill="#ffe9bd"/>
+      <rect x="52" y="90" width="34" height="26" rx="3" fill="#8cc084"/>
+      <rect x="114" y="90" width="34" height="26" rx="3" fill="#8cc084"/>
+      <rect x="52" y="90" width="34" height="26" rx="3" fill="#2f5d3b" opacity=".35"/>
+      <rect x="114" y="90" width="34" height="26" rx="3" fill="#2f5d3b" opacity=".35"/>
+      <rect x="86" y="106" width="28" height="30" rx="14" fill="#b8774a"/>
+      <circle cx="108" cy="121" r="2.6" fill="#ffe9bd"/>
+      <rect x="90" y="16" width="20" height="26" rx="3" fill="#c95f36"/>
+      <circle cx="100" cy="29" r="6" fill="#ffd98a" class="door"/>
+    </svg>
+  </button>
+  <!-- lanterns injected here -->
+</main>
+
+<!-- Modal -->
+<div id="modal">
+  <div class="backdrop" id="modalBackdrop"></div>
+  <div class="modal-card" id="modalCard">
+    <button class="m-close" id="modalClose">✕</button>
+    <div class="m-head" id="mHead">
+      <div class="shape"></div>
+      <div class="m-no" id="mNo"></div>
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-sub" id="mSub"></div>
+    </div>
+    <div class="m-body" id="mBody"></div>
+  </div>
+</div>
+
+<!-- Overview map -->
+<div id="map">
+  <button class="map-close" id="mapClose">✕</button>
+  <div class="map-inner">
+    <h3>🗺️ 花园地图</h3>
+    <div class="map-grid" id="mapGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="hint"><span><kbd>←</kbd> <kbd>→</kbd> 切换</span><span>Esc 关闭</span></div>
+  <div class="dots" id="dots"></div>
+</footer>
+
+<script>
+"use strict";
+/* ================= Content ================= */
+let DATA = [];
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function inline(t){ return esc(t).replace(/\*\*(.+?)\*\*/g, "<b class='hl'>$1</b>"); }
+function parseMarkdown(md){
+  const lines = md.split(/\r?\n/);
+  const scenes = [];
+  let cur = null, grid = [], inComment = false;
+  function flushGrid(){ if(grid.length && cur){ cur.blocks.push({t:"grid", cols:grid}); } grid = []; }
+  for(const raw of lines){
+    const line = raw.trim();
+    if(inComment){ if(line.indexOf("-->") >= 0) inComment = false; continue; }
+    if(line.startsWith("<!--")){
+      if(line.indexOf("-->") < 0) inComment = true;
+      const cm = line.match(/color\s*:\s*(#[0-9a-fA-F]{3,6})/);
+      if(cm && cur && !cur.acc) cur.acc = cm[1];
+      continue;
+    }
+    if(!line){ flushGrid(); continue; }
+    if(line.startsWith("# ")){
+      flushGrid();
+      const rest = line.slice(2).trim();
+      const nm = rest.match(/^(\d+)\s*(.*)$/);
+      cur = { no: nm ? nm[1] : String(scenes.length+1).padStart(2,"0"), title: nm ? nm[2] : rest, sub:"", acc:null, blocks:[] };
+      scenes.push(cur);
+      continue;
+    }
+    if(!cur) continue;
+    if(line.startsWith("> ")){
+      flushGrid();
+      if(!cur.sub) cur.sub = line.slice(2).trim();
+      else cur.blocks.push({t:"quote", text: inline(line.slice(2).trim())});
+      continue;
+    }
+    if(line.startsWith("## ")){
+      flushGrid();
+      cur.blocks.push({t:"h", text: inline(line.slice(3).trim())});
+      continue;
+    }
+    if(line.startsWith("|")){
+      const cells = line.split("|").slice(1,-1).map(s=>s.trim());
+      const isSep = cells.length && cells.every(c => /^:?-{2,}:?$/.test(c));
+      if(isSep){ if(grid.length) grid.pop(); continue; }
+      if(cells.length >= 2){ grid.push({k:inline(cells[0]), v:inline(cells.slice(1).join(" | "))}); continue; }
+    }
+    flushGrid();
+    cur.blocks.push({t:"p", text: inline(line)});
+  }
+  flushGrid();
+  return scenes;
+}
+async function loadContent(){
+  try{
+    const res = await fetch("../content.md?v=" + Date.now(), {cache:"no-cache"});
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    DATA = parseMarkdown(await res.text());
+    buildScene();
+  }catch(err){
+    document.body.insertAdjacentHTML("beforeend", '<div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99;color:#ffd9d9;background:#3b1520;padding:18px 24px;border-radius:12px;font-size:14px">内容加载失败：' + esc(err && err.message || err) + '</div>');
+  }
+}
+
+/* ================= Scene ================= */
+const lanternColors = ["#8090df","#8cc084","#a9e5cf","#ef779d","#f58b2a","#ffd98a","#b39ddb"];
+function lanternSVG(c){
+  return '<svg viewBox="0 0 64 64" width="100%" height="100%">' +
+    '<path d="M32 4 C18 16 10 26 10 38 a22 22 0 0 0 44 0 C54 26 46 16 32 4Z" fill="url(#lanternG)" stroke="rgba(255,246,223,.55)" stroke-width="1.6"/>' +
+    '<path d="M32 12 C24 21 19 28 19 37 a13 13 0 0 0 26 0 C45 28 40 21 32 12Z" fill="rgba(255,246,223,.28)"/>' +
+    '<rect x="29" y="1" width="6" height="7" rx="2" fill="#c9b27a"/>' +
+    '<path d="M22 49 q10 8 20 0" stroke="rgba(255,246,223,.6)" stroke-width="1.4" fill="none" stroke-linecap="round"/>' +
+    '<defs><radialGradient id="lanternG" cx="35%" cy="30%" r="85%"><stop offset="0%" stop-color="#fff3cf"/><stop offset="55%" stop-color="' + c + '"/><stop offset="100%" stop-color="#7a4f2f"/></radialGradient></defs>' +
+    '</svg>';
+}
+const lanternPos = [
+  [8, 34], [26, 18], [47, 12], [67, 16], [84, 30], [24, 46], [72, 46]
+];
+function buildScene(){
+  const scene = document.getElementById("scene");
+  const dots = document.getElementById("dots");
+  const mapGrid = document.getElementById("mapGrid");
+  dots.innerHTML = ""; mapGrid.innerHTML = "";
+  DATA.forEach((s, i) => {
+    const acc = s.acc || lanternColors[i % lanternColors.length];
+    if(i < DATA.length - 1){
+      // lantern (sections, ending is the house)
+      const lan = document.createElement("button");
+      lan.className = "lantern";
+      lan.style.left = lanternPos[i % lanternPos.length][0] + "%";
+      lan.style.top = lanternPos[i % lanternPos.length][1] + "%";
+      lan.style.setProperty("--mc", acc);
+      lan.innerHTML = '<span class="glow" style="color:' + acc + '">' + lanternSVG(acc) + '</span>' +
+        '<span class="lab"><span class="no">' + s.no + '</span> · ' + esc(s.title.slice(0, 6)) + '</span>';
+      lan.addEventListener("click", () => openModal(i));
+      lan.addEventListener("mouseenter", () => SFX.hover());
+      lan.style.animationDelay = (i * 0.12) + "s";
+      lan.classList.add("in");
+      scene.appendChild(lan);
+    }
+
+    const dot = document.createElement("button");
+    dot.className = "dot-btn";
+    dot.title = s.no + " · " + s.title;
+    dot.addEventListener("click", () => openModal(i));
+    dots.appendChild(dot);
+
+    const item = document.createElement("button");
+    item.className = "map-item";
+    item.innerHTML = '<div class="n">' + s.no + '</div><div class="t">' + esc(s.title) + '</div><div class="d">' + esc(s.sub) + '</div>';
+    item.addEventListener("click", () => { closeMap(); openModal(i); });
+    mapGrid.appendChild(item);
+  });
+  // house = last scene (ending)
+  const houseBtn = document.getElementById("houseBtn");
+  houseBtn.addEventListener("click", () => openModal(DATA.length - 1));
+  houseBtn.addEventListener("mouseenter", () => SFX.hover());
+}
+
+/* ================= Modal ================= */
+const modal = document.getElementById("modal");
+function blkHTML(b){
+  if(b.t==="h") return '<div class="m-h">' + b.text + '</div>';
+  if(b.t==="p") return '<div class="m-p">' + b.text + '</div>';
+  if(b.t==="quote") return '<div class="m-quote">' + b.text + '</div>';
+  if(b.t==="grid") return '<div class="m-grid">' + b.cols.map(function(c){ return '<div class="m-cell"><b>' + c.k + '</b>' + c.v + '</div>'; }).join("") + '</div>';
+  return "";
+}
+let currentModal = 0;
+function openModal(i){
+  currentModal = i;
+  const s = DATA[i];
+  const acc = s.acc || "#8090df";
+  document.getElementById("mHead").style.setProperty("--mc", acc);
+  document.getElementById("mNo").textContent = s.no;
+  document.getElementById("mTitle").textContent = s.title;
+  document.getElementById("mSub").textContent = s.sub;
+  document.getElementById("mBody").innerHTML = s.blocks.map(blkHTML).join("");
+  document.querySelectorAll(".dot-btn").forEach((el,idx)=>el.classList.toggle("on", idx===i));
+  modal.classList.add("on");
+  SFX.open();
+}
+function closeModal(){ modal.classList.remove("on"); SFX.close(); }
+document.getElementById("modalClose").addEventListener("click", closeModal);
+document.getElementById("modalBackdrop").addEventListener("click", closeModal);
+
+/* ================= Map ================= */
+const map = document.getElementById("map");
+function openMap(){ map.classList.add("on"); SFX.pop(); }
+function closeMap(){ map.classList.remove("on"); }
+document.getElementById("mapBtn").addEventListener("click", openMap);
+document.getElementById("mapClose").addEventListener("click", closeMap);
+map.addEventListener("click", e => { if(e.target === map) closeMap(); });
+
+/* ================= Cover ================= */
+const cover = document.getElementById("cover");
+cover.addEventListener("click", () => {
+  cover.classList.add("hide");
+  SFX.enter();
+  if(localStorage.getItem("handbook_music_v2") === "1") Music.start();
+});
+
+/* ================= Keys ================= */
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape"){ closeModal(); closeMap(); return; }
+  if(modal.classList.contains("on")){
+    if(e.key === "ArrowRight") openModal((currentModal+1) % DATA.length);
+    if(e.key === "ArrowLeft") openModal((currentModal-1+DATA.length) % DATA.length);
+  }
+});
+
+/* ================= Mouse light ================= */
+const light = document.getElementById("light");
+function moveLight(x, y){
+  light.style.setProperty("--mx", x + "px");
+  light.style.setProperty("--my", y + "px");
+}
+document.addEventListener("mousemove", e => moveLight(e.clientX, e.clientY));
+document.addEventListener("touchmove", e => {
+  if(e.touches && e.touches[0]) moveLight(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive:true});
+
+/* ================= SFX ================= */
+const SFX = (() => {
+  let ctx = null;
+  function ac(){
+    if(!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if(ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+  function tone(freq, dur, type, vol, delay, slideTo){
+    try{
+      const c = ac(), t = c.currentTime + (delay || 0);
+      const o = c.createOscillator(), g = c.createGain();
+      o.type = type || "sine";
+      o.frequency.setValueAtTime(freq, t);
+      if(slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(t); o.stop(t + dur + 0.03);
+    }catch(e){}
+  }
+  return {
+    hover(){ tone(1500, 0.05, "sine", 0.025); },
+    pop(){ tone(760, 0.07, "triangle", 0.05); },
+    open(){ tone(587, 0.16, "sine", 0.07); tone(880, 0.2, "sine", 0.06, 0.06); tone(1175, 0.32, "sine", 0.045, 0.12); },
+    close(){ tone(520, 0.12, "triangle", 0.06, 0, 360); },
+    enter(){ [523,659,784,1047].forEach((f,i)=>tone(f, 0.3, "sine", 0.055, i*0.09)); }
+  };
+})();
+
+/* ================= Music ================= */
+const musicBtn = document.getElementById("musicBtn");
+const Music = (() => {
+  let ctx=null, master=null, reverb=null, padTimer=null, pluckTimer=null, chordIdx=0, playing=false;
+  const chords=[[60,64,67,71],[57,60,64,67],[53,57,60,64],[55,59,62,67]];
+  const pent=[60,62,64,67,69,72,74,76,79];
+  const midi=f=>440*Math.pow(2,(f-69)/12);
+  function buildIR(sec,decay){
+    const rate=ctx.sampleRate,len=Math.floor(rate*sec),buf=ctx.createBuffer(2,len,rate);
+    for(let c=0;c<2;c++){const d=buf.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,decay);}
+    return buf;
+  }
+  function ensure(){
+    if(!ctx){
+      ctx=new (window.AudioContext||window.webkitAudioContext)();
+      master=ctx.createGain(); master.gain.value=0.13; master.connect(ctx.destination);
+      reverb=ctx.createConvolver(); reverb.buffer=buildIR(2.4,2.1);
+      const wet=ctx.createGain(); wet.gain.value=0.4; reverb.connect(wet); wet.connect(master);
+    }
+    if(ctx.state==="suspended") ctx.resume();
+  }
+  function chord(){
+    const t=ctx.currentTime+0.1, ch=chords[chordIdx++%chords.length], dur=7;
+    ch.forEach(n=>{
+      const o=ctx.createOscillator(); o.type="sine"; o.frequency.value=midi(n);
+      const g=ctx.createGain();
+      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.12,t+1.5);
+      g.gain.setValueAtTime(0.12,t+dur-1.3); g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+      o.connect(g); g.connect(master);
+      const g2=ctx.createGain(); g2.gain.value=0.6; g.connect(g2); g2.connect(reverb);
+      o.start(t); o.stop(t+dur+0.3);
+    });
+    const bo=ctx.createOscillator(); bo.type="sine"; bo.frequency.value=midi(ch[0]-12);
+    const bg=ctx.createGain();
+    bg.gain.setValueAtTime(0.0001,t); bg.gain.exponentialRampToValueAtTime(0.07,t+1.2);
+    bg.gain.setValueAtTime(0.07,t+dur-1); bg.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    bo.connect(bg); bg.connect(master); bo.start(t); bo.stop(t+dur+0.3);
+  }
+  function pluck(){
+    if(!playing||!ctx) return;
+    const t=ctx.currentTime+0.02, n=pent[Math.floor(Math.random()*pent.length)]+[0,12,24][Math.floor(Math.random()*3)];
+    const o=ctx.createOscillator(); o.type="triangle"; o.frequency.value=midi(n);
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.09,t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+2.2);
+    o.connect(g); g.connect(master);
+    const g2=ctx.createGain(); g2.gain.value=0.7; g.connect(g2); g2.connect(reverb);
+    o.start(t); o.stop(t+2.4);
+  }
+  function start(){
+    if(playing) return; playing=true; ensure();
+    chord(); padTimer=setInterval(chord,6000); pluckTimer=setInterval(pluck,2200);
+  }
+  function stop(){
+    if(!playing) return; playing=false;
+    clearInterval(padTimer); clearInterval(pluckTimer);
+    try{ if(ctx) ctx.suspend(); }catch(e){}
+  }
+  return { start, stop, isPlaying:()=>playing };
+})();
+function setMusicBtn(on){
+  musicBtn.classList.toggle("on", on);
+  musicBtn.setAttribute("aria-pressed", on?"true":"false");
+  musicBtn.title = on ? "暂停背景音乐" : "播放背景音乐";
+}
+musicBtn.addEventListener("click", () => {
+  if(Music.isPlaying()){ Music.stop(); localStorage.setItem("handbook_music_v2","0"); setMusicBtn(false); }
+  else { Music.start(); localStorage.setItem("handbook_music_v2","1"); setMusicBtn(true); }
+});
+if(localStorage.getItem("handbook_music_v2") === "1"){
+  setMusicBtn(true);
+  const g = (e)=>{ if(e.target && e.target.closest && e.target.closest("#musicBtn")) return; Music.start(); document.removeEventListener("pointerdown",g); document.removeEventListener("keydown",g); };
+  document.addEventListener("pointerdown", g); document.addEventListener("keydown", g);
+}
+
+/* ================= Stars ================= */
+const cv = document.getElementById("stars"), c2 = cv.getContext("2d");
+let W,H,stars=[];
+function resize(){
+  W=cv.width=innerWidth; H=cv.height=innerHeight;
+  const n=Math.min(150,Math.floor(W*H/11000));
+  stars=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.5,a:Math.random()*.6+.2,s:Math.random()*.02+.004,p:Math.random()*6.28}));
+}
+function draw(){
+  c2.clearRect(0,0,W,H);
+  for(const st of stars){
+    st.a = .2 + .4*(1+Math.sin(st.p+=st.s))/2;
+    c2.beginPath(); c2.arc(st.x,st.y,st.r,0,7); c2.fillStyle="rgba(255,244,214,"+st.a+")"; c2.fill();
+  }
+  requestAnimationFrame(draw);
+}
+resize(); addEventListener("resize",resize); draw();
+
+loadContent();
+</script>
+</body>
+</html>
