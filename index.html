@@ -176,198 +176,83 @@ footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:14px 22px 18px;
 
 <script>
 "use strict";
-/* ---------- Content ---------- */
-const DATA = [
-  {
-    no:"01", title:"我的身份定位", sub:"这一部分用于明确我的身份定位。", acc:"#7dd3fc",
-    blocks:[
-      {t:"h", text:"1 · 我是谁？"},
-      {t:"p", text:"我叫<b class='hl'>蔡依凌</b>，朋友们会叫我 <b class='hl'>eeaine</b>。目前在香港大学读数学专业，主修数学，同时辅修了统计，开学就大四了。我家在上海，很多朋友也在上海，加上有时候实习会在上海做，所以经常香港和上海两个城市来回跑。我挺喜欢回家的，每次回去都觉得能充充电。"},
-      {t:"h", text:"2 · 我为什么参加这个项目？"},
-      {t:"p", text:"我未来想往<b class='hl'>金融数据</b>方向发展，但目前简历上还没有一段直接相关的实习经历，这让我觉得自己需要更主动地去补充一些项目实践。我对 AI 辅助工作这件事很感兴趣，平时在用一些 AI 工具的时候明显感觉到它们能提升效率，但还没有系统地把它们真正整合进自己的工作流里。参加这个项目对我来说是一个主动出击的机会，我想通过这段时间积累一份能放进作品集的项目成果，学到一套可以持续使用的 AI 工作方法，也借着行动慢慢走出现在这种原地等待的状态。与其焦虑，不如先把手头能做的事情做好。"},
-      {t:"h", text:"3 · 我希望 4 周结束后留下什么成果？"},
-      {t:"p", text:"一份能放进作品集的项目成果，一段能写进简历里的实践经历。一套我自己能熟练使用的 AI 辅助工作流程。一次完整的线上协作体验，让我更清楚自己在团队里的定位。以及，对未来的方向多一些笃定，少一些摇摆。"},
-    ]
-  },
-  {
-    no:"02", title:"我的任务系统", sub:"什么任务适合交给我，我如何进入任务状态。", acc:"#5eead4",
-    blocks:[
-      {t:"h", text:"1 · 我适合承担什么任务？"},
-      {t:"grid", cols:[
-        {k:"写作表达", v:"在社团做过宣传物料，习惯把自己的思考用文字梳理清楚。"},
-        {k:"资料整理", v:"用 Excel 做追踪表、数据校验、透视表这些是我做过很多次的事，把乱的信息理清楚会让我很有满足感。"},
-        {k:"视觉审美", v:"在社团做过平面设计，也设计过小程序 UI 界面，对排版和视觉呈现有自己的判断。"},
-        {k:"PPT / Excel 等软件", v:"日常重度依赖 Excel 和 PPT 做作业和汇报，Figma / Canva / PS 也用过不少。"},
-        {k:"内容策划", v:"帮社团和过往实习设计过活动流程和宣传内容。"},
-        {k:"拆解问题", v:"数学和统计的训练让我习惯把一个大问题拆成一个个可以解决的小问题。"},
-        {k:"视频剪辑", v:"会用剪映做基础剪辑和字幕处理。"},
-        {k:"执行推进", v:"做过不少对外联络和组织协调的工作，负责把多方需求落地。"},
-        {k:"活动策划", v:"统筹过三校新生营等活动，参与人数累计八百多人。"},
-        {k:"复盘总结", v:"做完一件事习惯想一想哪里做得好哪里可以改进，把反馈变成下一次的检查清单。"},
-        {k:"沟通协调", v:"在团委实习时独立负责过两百多人规模活动的全流程协调。"},
-        {k:"组织协作", v:"在多个社团和项目中担任过干事，熟悉多人协作的节奏。"},
-      ]},
-      {t:"p", text:"我目前比较擅长把零散的信息结构化，把抽象的想法落实成具体的文档或图表。我曾经做过的一件有代表性的事是在一段实习经历里，面对两百多份简历和杂乱的信息源，主动建立了一个候选人信息库和面试进度追踪表，还画了招聘渠道的转化漏斗图，最后帮团队把筛选到面试的平均周期缩短了大概五分之一。我在其中负责从需求沟通到数据建模到可视化呈现的全流程。我从这件事里学到，<b class='hl'>数据如果不能转化成可操作的洞察，就只是数字而已</b>，真正有价值的是从数据里读出故事并提出建议。我希望未来继续提升的能力是真正的数据分析思维，不只停留在工具层面，而是懂得从业务角度提问题、拆问题。"},
-      {t:"h", text:"我还希望承担什么类型的任务？"},
-      {t:"p", text:"如果要往金融数据方向发展，我其实更期待参与一些偏分析和逻辑推演的任务：数据清洗和预处理，把原始数据整理成可以分析的状态；搭建简单的评估模型或者打分卡，像我之前实习时做过的那样；做行业或者竞品的数据分析，从公开信息里提炼出有用的判断依据；用数据讲故事，把分析结果转化成图表和汇报材料，让非技术背景的人也能看懂。这些任务更偏理性分析，和人的直接交互相对少一些，是我更舒服也更有动力的工作类型，也更贴近我未来想做的方向。"},
-      {t:"h", text:"2 · 什么样的任务能激发我？"},
-      {t:"grid", cols:[
-        {k:"目标清楚", v:"告诉我要交付什么、给谁看、什么时候要，我就能很稳地往下做。"},
-        {k:"能看到反馈", v:"做出来的东西真的会被使用，我会特别有动力。"},
-        {k:"有真实需求", v:"能和真实用户或者群体相关。"},
-        {k:"有一定创意空间", v:"框架给定但表达可以自己发挥，这种自由度让我有主人翁感。"},
-        {k:"有明确产出", v:"有清晰的交付物。"},
-        {k:"能让我学到新方法", v:"每一次都能带走新技能。"},
-        {k:"可以被展示", v:"拿得出手的成果。"},
-        {k:"有明确的成长感", v:"项目结束后能明确感受到自己成长了，那种有收获的踏实感是支撑我一直做下去的最大动力。"},
-        {k:"能写进作品集", v:"我知道自己现在最缺的就是能拿得出手的成果，这是强激励。"},
-      ]},
-      {t:"p", text:"目标清楚的事情我会推进得特别安心。有真实需求也很重要，如果做出来的东西真的会被使用，我会特别有动力。有一定创意空间但又不是完全没边的事情也很吸引我。最重要的是，我希望项目结束后能明确感受到自己成长了。"},
-      {t:"h", text:"3 · 什么样的任务容易让我卡住？"},
-      {t:"grid", cols:[
-        {k:"需求模糊", v:"容易陷入反复想但迟迟不敢动手的状态。"},
-        {k:"长期没有反馈", v:"会怀疑自己是不是方向完全偏了，然后更不敢继续往下做。"},
-        {k:"标准不明确", v:"只有一句“你自己看着办”，没有参考案例和判断标准。"},
-        {k:"优先级混乱", v:"不知道先做什么。"},
-        {k:"没有参考案例", v:"不知道做到什么程度算好。"},
-        {k:"交付结果模糊", v:"不知道要产出什么。"},
-        {k:"截止时间模糊", v:"不知道怎么分配精力，是该赶紧交一版还是慢慢打磨。"},
-        {k:"信息太散，没有整理入口", v:"翻聊天记录找资料，翻着翻着就开始觉得自己很没用。"},
-        {k:"反复改需求，任务边界频繁变动", v:"前期做的很多工作被推翻，很消耗心力和时间。"},
-      ]},
-      {t:"quote", text:"当一个任务的目标、交付标准和截止时间比较清楚时，我会更容易推进。不过我也知道，现实中很多任务本身就是模糊和不确定的，我需要在这 4 周里刻意锻炼自己在这种环境下的适应能力，学会在信息不完整的情况下仍然往前推进。"},
-    ]
-  },
-  {
-    no:"03", title:"我的沟通系统", sub:"别人如何给我安排任务，我如何同步进度，遇到问题如何沟通。", acc:"#a5b4fc",
-    blocks:[
-      {t:"h", text:"1 · 给我安排任务时，请说清什么？"},
-      {t:"grid", cols:[
-        {k:"任务目标", v:"最终这个成果用来做什么。"},
-        {k:"背景信息", v:"这件事的前因后果。"},
-        {k:"截止时间", v:"什么时候要。"},
-        {k:"可以找谁对接", v:"遇到问题找谁。"},
-        {k:"交付形式", v:"交付物长什么样。"},
-        {k:"自由发挥 / 不能偏离", v:"哪些部分可以自己发挥，哪些必须按既定方向来。"},
-        {k:"交付标准", v:"判断好坏的标准是什么。"},
-        {k:"优先级", v:"先做什么、后做什么。"},
-        {k:"参考案例", v:"有没有可以参考的样例。"},
-      ]},
-      {t:"p", text:"给我安排任务时，我希望能把任务目标和背景信息说清楚，告诉我最终这个成果用来做什么、什么时候要、交付形式是什么、判断好坏的标准是什么、有没有可以参考的案例、哪些部分可以自己发挥哪些必须按既定方向来、优先级是怎样的、遇到问题可以找谁。信息越清楚，我做起来越顺利。"},
-      {t:"h", text:"2 · 我同步进度的方式是什么？"},
-      {t:"p", text:"遇到问题及时说，不会拖到最后一刻才告诉别人我做不完或者方向偏了。完成初稿后会主动同步一版出来，关键节点上也会主动确认方向。如果遇到问题，我会先自己整理一下，带着一两个可能的方案再去问。在群里同步共性问题，个人问题私聊沟通。"},
-      {t:"h", text:"3 · 我遇到问题时，希望如何沟通？"},
-      {t:"p", text:"我会先自己整理问题，然后带着一到两个方案来问。我希望负责人帮我判断优先级，帮我确认大方向对不对，先指出最关键的问题，等方向确认了再继续细化。"},
-      {t:"h", text:"4 · 我不太适应什么沟通方式？"},
-      {t:"p", text:"只说“你自己看着办”，临时改需求但不说明原因，只指出问题但不给标准，反馈太抽象，信息分散在多个地方，截止前突然追加任务，多个人给出互相冲突的意见——这些都会让我很崩溃。"},
-      {t:"quote", text:"我比较适合“目标清楚 + 中途有一次确认 + 最后再优化”的沟通方式。如果反馈比较抽象，比如只说“不够好”但没有说明判断标准，我会不清楚下一步怎么调整。"},
-    ]
-  },
-  {
-    no:"04", title:"我的反馈系统", sub:"我如何接收反馈，如何根据反馈改进。", acc:"#f0abfc",
-    blocks:[
-      {t:"h", text:"1 · 我希望别人如何给我正向反馈？"},
-      {t:"p", text:"告诉我哪里做得好，告诉我哪些能力可以继续放大，告诉我这个作品适合被用在哪里，告诉我哪一部分比上次有进步，直接指出一个具体亮点。这些具体的肯定能让我知道该往哪个方向继续走。"},
-      {t:"h", text:"2 · 我希望别人如何指出问题？"},
-      {t:"p", text:"具体指出问题在哪里，说明为什么这里不合适，给出修改方向，给出判断标准，提供参考案例，区分“必须修改”和“可以优化”。区分这两点特别重要，这样我就知道哪些是硬性要求必须优先处理，哪些可以根据自己的判断灵活调整。"},
-      {t:"h", text:"3 · 我收到反馈后的习惯是什么？"},
-      {t:"p", text:"收到反馈后先整理所有修改点，按优先级调整，先改关键问题。更新版本后同步结果，同时记录自己下次要注意什么，把反馈变成下一次任务的检查清单。"},
-      {t:"quote", text:"我希望反馈能尽量具体一点。相比“这里不太行”，我更需要知道“哪里不行、为什么、下一步可以怎么改”。收到反馈后，我会先整理修改点，再判断哪些需要立即修改，哪些可以作为后续优化。"},
-    ]
-  },
-  {
-    no:"05", title:"我的压力预警系统", sub:"帮助团队更早识别协作风险。", acc:"#fda4af",
-    blocks:[
-      {t:"h", text:"1 · 我压力大时，可能会出现什么状态？"},
-      {t:"grid", cols:[
-        {k:"拖延", v:"表面平静但内心已经翻江倒海。"},
-        {k:"情绪紧张", v:"反复揣测自己是不是做得不够好。"},
-        {k:"沉默", v:"不太说话，自己消化。"},
-        {k:"容易想太多", v:"会不会让别人失望。"},
-        {k:"不敢问问题", v:"怕问出来显得自己能力不行。"},
-        {k:"不知道从哪里开始", v:"明明知道早交一版早安心，但就是过不去心里那道坎。"},
-        {k:"反复修改", v:"改来改去还是不满意。"},
-        {k:"表面答应但实际推进困难", v:"嘴上说好，但进度很慢。"},
-        {k:"效率下降", v:"做事的节奏明显变慢。"},
-        {k:"过度追求完美，迟迟不提交初稿", v:"最明显的表现是拖延和沉默。"},
-      ]},
-      {t:"p", text:"我压力大的时候最明显的表现是拖延和沉默。我会很容易想太多，反复揣测自己是不是做得不够好，会不会让别人失望，有时候不敢问问题，怕问出来显得自己能力不行。还会过度追求完美导致迟迟不提交初稿。"},
-      {t:"h", text:"2 · 别人怎么提醒我比较有效？"},
-      {t:"p", text:"帮我拆成小任务，明确优先级，给我一个参考样例，提醒我先交初稿，帮我确认方向，给我一个明确的下一步，只问我“现在最卡的一步是什么”。最有效的是最后一问，只要把那个最具体的问题拎出来解决了，剩下的就能顺下去。"},
-      {t:"h", text:"3 · 什么方式反而会让我更卡住？"},
-      {t:"p", text:"一直催但不说标准，临时加很多任务，只说结果不好但不给方向，多个要求同时压过来，让我在信息不完整的情况下直接交最终版，对初稿要求过高。"},
-      {t:"quote", text:"我压力比较大的时候，可能会拖延或者沉默。这不代表我不想做，而是我需要先把任务拆小、确认优先级。对我比较有效的提醒方式是帮我把任务拆开并且告诉我最优先的是什么。"},
-    ]
-  },
-  {
-    no:"06", title:"我的支持系统", sub:"我需要什么信息、资源和节奏，才能稳定完成任务。", acc:"#fcd34d",
-    blocks:[
-      {t:"h", text:"1 · 信息支持：我需要哪些信息才能开始做事？"},
-      {t:"grid", cols:[
-        {k:"项目背景", v:"这件事为什么存在。"},
-        {k:"判断标准", v:"做得好坏如何衡量。"},
-        {k:"任务目标", v:"最终要达成什么。"},
-        {k:"截止时间", v:"什么时候要交。"},
-        {k:"目标人群", v:"做给谁看。"},
-        {k:"成果用途", v:"用在哪里。"},
-        {k:"参考案例", v:"有没有可参考的例子。"},
-        {k:"谁来验收", v:"谁说了算。"},
-        {k:"过往模板", v:"以前怎么做的。"},
-        {k:"必看资料", v:"哪些材料必须读。"},
-      ]},
-      {t:"p", text:"我开始做一件事之前最需要先知道的是这件事最终的目标和判断标准，知道终点在哪里才知道该往哪个方向走。项目背景、目标人群、成果用途、谁来验收、必看资料都到位了才能安心启动。"},
-      {t:"h", text:"2 · 资源支持：我需要哪些资源可以把事情做得更好？"},
-      {t:"grid", cols:[
-        {k:"AI 工具", v:"顺手好用的工具。"},
-        {k:"过往案例", v:"真实做过的例子。"},
-        {k:"数据材料", v:"可以分析的数据。"},
-        {k:"可请教的人", v:"遇到问题能问的人。"},
-        {k:"表格模板", v:"现成的格式。"},
-        {k:"作品参考库", v:"优秀作品合集。"},
-        {k:"项目文档", v:"项目相关文档。"},
-        {k:"提示词模板", v:"写好的提示词。"},
-        {k:"课程回放", v:"可以反复看的课。"},
-        {k:"共创会反馈", v:"大家的反馈。"},
-      ]},
-      {t:"p", text:"如果能提供参考案例和过往模板，我会更容易把任务完成到位。可请教的人和现成的提示词模板对我也会很有帮助。"},
-      {t:"h", text:"3 · 节奏支持：什么样的节奏能帮助我稳定完成任务？"},
-      {t:"grid", cols:[
-        {k:"拆成小节点", v:"每个节点有明确的交付物和截止时间。"},
-        {k:"每周固定复盘", v:"定期回顾和调整。"},
-        {k:"提前明确 DDL", v:"早点知道什么时候要。"},
-        {k:"有明确提交入口", v:"知道往哪里交。"},
-        {k:"中途检查一次", v:"中途确认一次方向。"},
-        {k:"有统一公告栏", v:"重要信息集中在一个地方。"},
-        {k:"允许先交初稿再优化", v:"先有一版再慢慢打磨。"},
-        {k:"重要信息不要散落太多地方", v:"不要翻很多聊天记录。"},
-      ]},
-      {t:"quote", text:"我开始做一件事前，最需要先知道任务目标和判断标准。如果能提供参考案例和过往模板，我会更容易把任务完成到位。对我来说比较稳定的节奏是：先拆成小节点，再中途确认一次方向，最后允许先交初稿再优化。"},
-    ]
-  },
-  {
-    no:"07", title:"我的团队使用说明", sub:"整份说明书的总结，让负责人一眼知道怎么与我协作。", acc:"#86efac",
-    blocks:[
-      {t:"h", text:"1 · 我能为团队提供什么支持？"},
-      {t:"p", text:"数据整理和分析方面的支持，信息归类和结构化也是我擅长的。内容框架搭建和视觉呈现我能贡献一些想法。组织协调和执行推进我可以把多方需求串起来并落地。同时因为我本身就比较敏感，也能察觉到团队里谁可能状态不太好，可以帮忙做一些情绪上的承接和鼓励。"},
-      {t:"h", text:"2 · 什么任务适合交给我？"},
-      {t:"p", text:"资料整理和信息归类的事情可以放心交给我，比如把散落的信息汇总成一张清晰的表格。内容框架的梳理、任务流程的整理、PPT 的结构化设计，这些也都是我可以胜任的。数据清洗和预处理，从原始数据里提取有价值的信息。把一个模糊的想法拆解成可执行的步骤，然后用图表或者文档呈现出来让大家都能看清楚。"},
-      {t:"h", text:"3 · 什么任务暂时不适合直接交给我？"},
-      {t:"p", text:"需要独立对外商务沟通的任务，如果没有人带、直接让我自己去面对外部合作方，我会比较紧张。有人带着走一遍流程的话是可以的，但不能一上来就完全放手让我自己处理。没有任何参考案例的视觉设计也不适合直接交给我，因为我需要先看一些例子才能理解风格和方向的预期。"},
-      {t:"p", text:"但我需要补充一点：<b class='hl'>数据建模类的任务反而是我特别想做的</b>，我有建模的知识基础，缺的是现实中的案例来练手。所以如果团队里有数据建模相关的工作，请尽管交给我，我需要有人带着我做，在一来一回的讨论中不断完善模型，而不是完全独立完成。这种真实场景里的实战机会对我来说非常宝贵。"},
-      {t:"h", text:"4 · 团队和我协作时，最需要注意什么？"},
-      {t:"p", text:"请给我明确的标准和优先级。如果方向不对请尽早反馈，不要等到最后一天才告诉我全部重来。我特别适合先出初稿、再一起讨论怎么修改、最后定终稿的模式，初稿阶段不需要很完美，方向对了后面慢慢打磨我心里是踏实的。我需要知道这件事最终会被用在哪里，知道了应用场景之后我就能自己做很多判断，不用每件小事都去问。重要信息尽量集中在一个地方，不要散落在太多聊天记录里。"},
-      {t:"h", text:"5 · 最后，我想对项目团队说一句话"},
-      {t:"quote", text:"如果把我放进一个团队里，我比较适合负责资料整理、数据分析、内容框架搭建和组织协调这一类任务。对我来说最有效的协作方式是目标清楚加上中途有一次方向确认，然后一起讨论修改，最后定终稿，这个节奏我能够比较稳定地输出。这 4 周里我希望自己能认真完成每一次交付，不是随便应付，而是真正去理解任务背后要解决什么问题，最终留下一个能放进作品集的项目成果，还有一套我能带到未来工作中的 AI 辅助方式。"},
-    ]
-  },
-  {
-    no:"08", title:"终点站 · 想对你说", sub:"心里有很多不确定，但我选择用行动去回应它们。", acc:"#e2e8f0",
-    blocks:[
-      {t:"quote", text:"也想通过这段时间验证自己的方向选择，在真实协作中确认自己适不适合往金融数据这条路走。我心里有很多不确定，但我选择用行动去回应它们，我相信只要一步步把事情做好，方向会越来越清晰的。"},
-      {t:"p", text:"—— 蔡依凌（eeaine）· 香港大学 · 数学与统计 · 上海 ⇄ 香港"},
-    ]
+/* ============================================================
+   内容加载：网页从 content.md 读取文字，方便你自己修改。
+   本文件（index.html）是页面外观和交互，一般不需要改。
+   ============================================================ */
+let DATA = [];
+let COVER = { name: "", meta: "" };
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function inline(t){ return esc(t).replace(/\*\*(.+?)\*\*/g, "<b class='hl'>$1</b>"); }
+
+function parseMarkdown(md){
+  const lines = md.split(/\r?\n/);
+  const scenes = [];
+  let cur = null, grid = [], inComment = false;
+  function flushGrid(){ if(grid.length && cur){ cur.blocks.push({t:"grid", cols:grid}); } grid = []; }
+  for(const raw of lines){
+    const line = raw.trim();
+    if(inComment){ if(line.indexOf("-->") >= 0) inComment = false; continue; }
+    if(line.startsWith("<!--")){
+      if(line.indexOf("-->") < 0) inComment = true;
+      const cm = line.match(/color\s*:\s*(#[0-9a-fA-F]{3,6})/);
+      if(cm && cur && !cur.acc) cur.acc = cm[1];
+      const nm = line.match(/cover_name\s*:\s*(.+?)\s*-->/); if(nm) COVER.name = nm[1].trim();
+      const mm = line.match(/cover_meta\s*:\s*(.+?)\s*-->/); if(mm) COVER.meta = mm[1].trim();
+      continue;
+    }
+    if(!line){ flushGrid(); continue; }
+    if(line.startsWith("# ")){
+      flushGrid();
+      const rest = line.slice(2).trim();
+      const nm2 = rest.match(/^(\d+)\s*(.*)$/);
+      cur = { no: nm2 ? nm2[1] : String(scenes.length+1).padStart(2,"0"), title: nm2 ? nm2[2] : rest, sub:"", acc:null, blocks:[] };
+      scenes.push(cur);
+      continue;
+    }
+    if(!cur) continue;
+    if(line.startsWith("> ")){
+      flushGrid();
+      if(!cur.sub) cur.sub = line.slice(2).trim();
+      else cur.blocks.push({t:"quote", text: inline(line.slice(2).trim())});
+      continue;
+    }
+    if(line.startsWith("## ")){
+      flushGrid();
+      cur.blocks.push({t:"h", text: inline(line.slice(3).trim())});
+      continue;
+    }
+    if(line.startsWith("|")){
+      const cells = line.split("|").slice(1,-1).map(s=>s.trim());
+      const isSep = cells.length && cells.every(c => /^:?-{2,}:?$/.test(c));
+      if(isSep){ if(grid.length) grid.pop(); continue; }
+      if(cells.length >= 2){ grid.push({k:inline(cells[0]), v:inline(cells.slice(1).join(" | "))}); continue; }
+    }
+    flushGrid();
+    cur.blocks.push({t:"p", text: inline(line)});
   }
-];
+  flushGrid();
+  return scenes;
+}
+
+async function loadContent(){
+  try{
+    const res = await fetch("content.md?v=" + Date.now(), {cache:"no-cache"});
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    DATA = parseMarkdown(await res.text());
+    applyCover();
+    render();
+  }catch(err){
+    document.body.insertAdjacentHTML("beforeend", '<div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99;max-width:82%;text-align:center;color:#ffd9d9;background:#3b1520;padding:20px 26px;border-radius:14px;font-size:14px;line-height:1.9">内容文件加载失败：' + esc(err && err.message || err) + '<br>请确认 content.md 已与 index.html 一起发布到仓库。</div>');
+  }
+}
+function applyCover(){
+  const subEl = document.querySelector("#cover .sub");
+  const metaEl = document.querySelector("#cover .meta");
+  if(COVER.name && subEl) subEl.textContent = COVER.name;
+  if(COVER.meta && metaEl) metaEl.textContent = COVER.meta;
+}
 
 /* ---------- Render ---------- */
 const stage = document.getElementById("stage");
@@ -377,55 +262,50 @@ const curEl = document.getElementById("cur");
 const totEl = document.getElementById("tot");
 
 function blkHTML(b){
-  if(b.t==="h") return `<div class="blk-h">${b.text}</div>`;
-  if(b.t==="p") return `<div class="blk-p">${b.text}</div>`;
-  if(b.t==="quote") return `<div class="blk-quote">${b.text}</div>`;
-  if(b.t==="grid") return `<div class="blk-grid">${b.cols.map(c=>`<div class="blk-cell"><b>${c.k}</b>${c.v}</div>`).join("")}</div>`;
+  if(b.t==="h") return '<div class="blk-h">' + b.text + '</div>';
+  if(b.t==="p") return '<div class="blk-p">' + b.text + '</div>';
+  if(b.t==="quote") return '<div class="blk-quote">' + b.text + '</div>';
+  if(b.t==="grid") return '<div class="blk-grid">' + b.cols.map(function(c){ return '<div class="blk-cell"><b>' + c.k + '</b>' + c.v + '</div>'; }).join("") + '</div>';
   return "";
 }
 
-DATA.forEach((s,i)=>{
-  const sec = document.createElement("section");
-  sec.className = "scene";
-  sec.style.setProperty("--acc", s.acc);
-  sec.innerHTML = `
-    <div class="scene-wrap">
-      <div class="scene-top">
-        <div class="scene-no">${s.no}</div>
-        <div>
-          <div class="scene-title">${s.title}</div>
-          <div class="scene-sub">${s.sub}</div>
-        </div>
-      </div>
-      <div class="scene-body">${s.blocks.map(blkHTML).join("")}</div>
-    </div>`;
-  stage.appendChild(sec);
+function render(){
+  stage.innerHTML = ""; dotsEl.innerHTML = ""; ovList.innerHTML = "";
+  DATA.forEach(function(s,i){
+    s.acc = s.acc || "#7dd3fc";
+    const sec = document.createElement("section");
+    sec.className = "scene";
+    sec.style.setProperty("--acc", s.acc);
+    sec.innerHTML = '<div class="scene-wrap"><div class="scene-top">' +
+      '<div class="scene-no">' + s.no + '</div>' +
+      '<div><div class="scene-title">' + s.title + '</div><div class="scene-sub">' + s.sub + '</div></div>' +
+      '</div><div class="scene-body">' + s.blocks.map(blkHTML).join("") + '</div></div>';
+    stage.appendChild(sec);
 
-  const dot = document.createElement("button");
-  dot.className = "dot-btn";
-  dot.title = s.no + " · " + s.title;
-  dot.addEventListener("click", ()=>go(i));
-  dotsEl.appendChild(dot);
+    const dot = document.createElement("button");
+    dot.className = "dot-btn";
+    dot.title = s.no + " · " + s.title;
+    dot.addEventListener("click", function(){ go(i); });
+    dotsEl.appendChild(dot);
 
-  const item = document.createElement("button");
-  item.className = "ov-item";
-  item.innerHTML = `<div class="n">${s.no}</div><div class="t">${s.title}</div><div class="d">${s.sub}</div>`;
-  item.addEventListener("click", ()=>{ go(i); toggleOv(false); });
-  ovList.appendChild(item);
-});
-
-totEl.textContent = String(DATA.length).padStart(2,"0");
+    const item = document.createElement("button");
+    item.className = "ov-item";
+    item.innerHTML = '<div class="n">' + s.no + '</div><div class="t">' + s.title + '</div><div class="d">' + s.sub + '</div>';
+    item.addEventListener("click", function(){ go(i); toggleOv(false); });
+    ovList.appendChild(item);
+  });
+  totEl.textContent = String(DATA.length).padStart(2,"0");
+  go(0);
+}
 
 let cur = 0;
 function go(i){
   cur = (i+DATA.length)%DATA.length;
   document.querySelectorAll(".scene").forEach((el,idx)=>el.classList.toggle("on", idx===cur));
   document.querySelectorAll(".dot-btn").forEach((el,idx)=>el.classList.toggle("on", idx===cur));
-  curEl.textContent = DATA[cur].no;
-  document.body.style.setProperty("--acc", DATA[cur].acc);
+  curEl.textContent = DATA[cur] ? DATA[cur].no : "--";
+  document.body.style.setProperty("--acc", DATA[cur] ? DATA[cur].acc : "#7dd3fc");
 }
-go(0);
-
 /* ---------- Cover ---------- */
 const cover = document.getElementById("cover");
 cover.addEventListener("click", ()=>cover.classList.add("hide"));
@@ -439,7 +319,7 @@ ov.addEventListener("click", e=>{ if(e.target===ov) toggleOv(false); });
 
 /* ---------- Keys ---------- */
 document.addEventListener("keydown", e=>{
-  if(e.key==="Escape"){ toggleOv(); return; }
+  if(e.key==="Escape"){ toggleOv(false); return; }
   if(e.key==="ArrowRight"){ go(cur+1); return; }
   if(e.key==="ArrowLeft"){ go(cur-1); return; }
 });
@@ -461,6 +341,7 @@ function draw(){
   requestAnimationFrame(draw);
 }
 resize(); addEventListener("resize",resize); draw();
+loadContent();
 </script>
 </body>
 </html>
