@@ -3,6 +3,7 @@
 北辰青年实践项目 · AI 时代个人说明书互动网页
 
 在线访问：https://elainecai216.github.io/AI-Handbook/
+        https://elainecai216.github.io/AI-Handbook/v2/
 
 ## 🎵 背景音乐
 
