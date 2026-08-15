@@ -6,79 +6,86 @@
 <title>AI 时代个人说明书 · 插画版 · 蔡依凌（Elaine）</title>
 <style>
 :root{
-  --sky1:#16223f; --sky2:#2b3b68; --sky3:#44527f;
-  --cream:#fff6df; --cream2:#ffe9bd;
-  --ink:#25231d;
+  --sky1:#131b38; --sky2:#293b66; --sky3:#46527e;
+  --cream:#fff6df; --gold:#ffd98a; --gold2:#e0a64c;
+  --ink:#2a2618;
   --leaf:#8cc084; --leaf2:#4c8a5a; --leaf3:#2f5d3b;
-  --mint:#a9e5cf;
   --pink:#ef779d; --pink2:#d75a86;
-  --orange:#ffb25e; --orange2:#f58b2a;
-  --blue:#8090df; --gold:#ffd98a;
-  --card:#fffdf4;
-  --line:rgba(37,35,29,.14);
+  --orange:#ffb25e;
+  --blue:#8090df; --plum:#8d6fc4;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
 body{
   font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
-  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 55%,var(--sky3) 100%);
-  color:var(--cream); overflow:hidden; position:relative;
-  cursor:crosshair;
+  background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 52%,var(--sky3) 100%);
+  color:var(--cream); overflow:hidden; position:relative; cursor:crosshair;
 }
 ::selection{background:rgba(255,217,138,.35)}
 
-/* ---- star field ---- */
+/* ---- decorative storybook frame ---- */
+.frame{position:fixed;inset:10px;z-index:5;pointer-events:none;border:2.5px solid rgba(255,217,138,.4);border-radius:26px}
+.frame::before{content:"";position:absolute;inset:6px;border:1px dashed rgba(255,217,138,.28);border-radius:20px}
+.frame i{position:absolute;width:24px;height:24px;border:3px solid var(--gold);border-radius:7px;filter:drop-shadow(0 0 6px rgba(255,217,138,.5))}
+.frame i:nth-child(1){left:22px;top:20px;border-right:none;border-bottom:none;border-top-left-radius:12px}
+.frame i:nth-child(2){right:22px;top:20px;border-left:none;border-bottom:none;border-top-right-radius:12px}
+.frame i:nth-child(3){left:22px;bottom:20px;border-right:none;border-top:none;border-bottom-left-radius:12px}
+.frame i:nth-child(4){right:22px;bottom:20px;border-left:none;border-top:none;border-bottom-right-radius:12px}
+
+/* ---- stars ---- */
 #stars{position:fixed;inset:0;z-index:0;pointer-events:none}
-.moon{position:fixed;top:5vh;right:7vw;z-index:2;width:min(17vw,150px);aspect-ratio:1;pointer-events:none;
-  filter:drop-shadow(0 0 24px rgba(255,236,180,.55));animation:mfloat 7s ease-in-out infinite}
-@keyframes mfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ---- moon ---- */
+.moon{position:fixed;top:7vh;right:8vw;z-index:2;width:min(15vw,132px);aspect-ratio:1;pointer-events:none;
+  filter:drop-shadow(0 0 26px rgba(255,236,180,.5));animation:mfloat 7s ease-in-out infinite}
+@keyframes mfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* ---- mouse light ---- */
-#light{
-  position:fixed;inset:0;z-index:4;pointer-events:none;
+#light{position:fixed;inset:0;z-index:4;pointer-events:none;
   background:
-    radial-gradient(240px circle at var(--mx,50%) var(--my,40%), rgba(255,244,214,.28), transparent 70%),
-    radial-gradient(640px circle at var(--mx,50%) var(--my,40%), rgba(255,236,180,.13), transparent 60%);
-  mix-blend-mode:screen;
-  transition:background .08s linear;
-}
-#light.soft{background:none}
+    radial-gradient(230px circle at var(--mx,50%) var(--my,40%), rgba(255,244,214,.26), transparent 70%),
+    radial-gradient(620px circle at var(--mx,50%) var(--my,40%), rgba(255,236,180,.12), transparent 60%);
+  mix-blend-mode:screen;}
 
 /* ---- cover ---- */
-#cover{
-  position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(120% 120% at 50% 15%,#223058 0%,#101a31 75%);
-  cursor:pointer;transition:opacity .8s ease,visibility .8s;overflow:hidden;
-}
+#cover{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 120% at 50% 12%,#24315a 0%,#10182e 78%);cursor:pointer;
+  transition:opacity .8s ease,visibility .8s;overflow:hidden}
 #cover.hide{opacity:0;visibility:hidden;pointer-events:none}
+#cover .cover-frame{position:absolute;inset:16px;border:2.5px solid rgba(255,217,138,.45);border-radius:30px;pointer-events:none}
+#cover .cover-frame::before{content:"";position:absolute;inset:7px;border:1px dashed rgba(255,217,138,.3);border-radius:24px}
+#cover .cover-frame i{position:absolute;width:26px;height:26px;border:3px solid var(--gold);border-radius:8px}
+#cover .cover-frame i:nth-child(1){left:28px;top:26px;border-right:none;border-bottom:none}
+#cover .cover-frame i:nth-child(2){right:28px;top:26px;border-left:none;border-bottom:none}
+#cover .cover-frame i:nth-child(3){left:28px;bottom:26px;border-right:none;border-top:none}
+#cover .cover-frame i:nth-child(4){right:28px;bottom:26px;border-left:none;border-top:none}
 #cover .sky{position:absolute;inset:0;pointer-events:none}
-#cover .inner{position:relative;text-align:center;padding:24px;animation:rise 1.1s cubic-bezier(.22,.9,.35,1) both;z-index:3}
+#cover .inner{position:relative;text-align:center;z-index:3;padding:24px;animation:rise 1.1s cubic-bezier(.22,.9,.35,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-#cover .kicker{font-size:12px;letter-spacing:.45em;color:rgba(255,246,223,.72);margin-bottom:16px}
-#cover h1{font-size:clamp(36px,8vw,72px);font-weight:900;letter-spacing:.12em;color:var(--cream);
-  text-shadow:0 4px 0 rgba(0,0,0,.25),0 0 34px rgba(255,217,138,.35)}
-#cover .sub{margin-top:12px;font-size:clamp(15px,2.6vw,20px);letter-spacing:.3em;color:var(--gold)}
-#cover .meta{margin-top:26px;font-size:13px;color:rgba(255,246,223,.66);letter-spacing:.14em}
-#cover .enter{
-  margin:38px auto 0;display:inline-flex;align-items:center;gap:10px;padding:14px 40px;border-radius:999px;
-  border:2px solid var(--gold);color:var(--ink);background:linear-gradient(180deg,var(--gold),var(--orange));
-  font-size:16px;font-weight:800;letter-spacing:.3em;box-shadow:0 8px 0 rgba(0,0,0,.25),0 0 30px rgba(255,217,138,.35);
-  transition:transform .15s ease,box-shadow .15s ease;animation:bob 2.4s ease-in-out infinite;
-}
+#cover .kicker{font-size:12px;letter-spacing:.42em;color:rgba(255,246,223,.72);margin-bottom:18px}
+#cover .title-plaque{display:inline-block;padding:22px 42px;background:linear-gradient(180deg,var(--cream),#ffe9bd);
+  border-radius:18px;border:3px solid var(--gold2);box-shadow:0 10px 0 rgba(0,0,0,.25),0 0 44px rgba(255,217,138,.4);
+  transform:rotate(-1.2deg)}
+#cover h1{font-size:clamp(34px,7.5vw,66px);font-weight:900;letter-spacing:.12em;color:var(--ink);
+  text-shadow:2px 3px 0 rgba(255,217,138,.55)}
+#cover .sub{margin-top:10px;font-size:clamp(15px,2.6vw,20px);letter-spacing:.3em;color:var(--ink);opacity:.85}
+#cover .meta{margin-top:30px;font-size:13px;color:rgba(255,246,223,.68);letter-spacing:.14em}
+#cover .enter{margin:36px auto 0;display:inline-flex;align-items:center;gap:10px;padding:14px 42px;border-radius:999px;
+  border:2.5px solid #fff;color:var(--ink);background:linear-gradient(180deg,var(--gold),var(--orange));
+  font-size:16px;font-weight:800;letter-spacing:.3em;box-shadow:0 8px 0 rgba(0,0,0,.28),0 0 34px rgba(255,217,138,.4);
+  animation:bob 2.4s ease-in-out infinite;transition:transform .15s}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-#cover .enter:hover{transform:translateY(-2px) scale(1.04)}
+#cover .enter:hover{transform:translateY(-2px) scale(1.05)}
 
 /* ---- header ---- */
-header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:12px;padding:14px 20px;
-  background:linear-gradient(180deg,rgba(16,24,43,.72),transparent)}
+header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;gap:12px;padding:16px 24px;
+  background:linear-gradient(180deg,rgba(12,17,32,.55),transparent)}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14px;letter-spacing:.1em;white-space:nowrap}
 .brand .star{color:var(--gold);font-size:16px;filter:drop-shadow(0 0 6px rgba(255,217,138,.8))}
 .brand .en{font-size:10px;color:rgba(255,246,223,.6);font-weight:400}
 .spacer{flex:1}
-.chip{
-  display:inline-flex;align-items:center;gap:8px;background:rgba(255,246,223,.08);border:1px solid rgba(255,246,223,.35);
-  color:var(--cream);font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;transition:.25s;backdrop-filter:blur(6px);
-}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,246,223,.08);border:1px solid rgba(255,246,223,.35);
+  color:var(--cream);font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;transition:.25s;backdrop-filter:blur(6px)}
 .chip:hover{background:rgba(255,217,138,.16);border-color:var(--gold);color:var(--gold)}
 .chip.on{border-color:var(--gold);color:var(--gold);background:rgba(255,217,138,.14);box-shadow:0 0 14px rgba(255,217,138,.3)}
 .chip .eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
@@ -89,61 +96,71 @@ header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:c
 
 /* ---- scene ---- */
 #scene{position:fixed;inset:0;z-index:6}
-.scene-title{
-  position:absolute;top:9vh;left:0;right:0;text-align:center;z-index:5;pointer-events:none;
-}
-.scene-title h2{font-size:clamp(22px,4.4vw,38px);font-weight:900;letter-spacing:.16em;color:var(--cream);
-  text-shadow:0 3px 0 rgba(0,0,0,.28),0 0 26px rgba(255,217,138,.4)}
-.scene-title p{margin-top:6px;font-size:clamp(11px,1.8vw,13px);letter-spacing:.3em;color:rgba(255,246,223,.7)}
+.plaque{position:absolute;top:4.5vh;left:50%;transform:translateX(-50%);z-index:9;pointer-events:none;
+  display:flex;align-items:center;gap:12px;padding:10px 26px;background:linear-gradient(180deg,var(--cream),#ffe9bd);
+  border:3px solid var(--gold2);border-radius:16px;box-shadow:0 7px 0 rgba(0,0,0,.22),0 0 30px rgba(255,217,138,.35);
+  white-space:nowrap;max-width:92vw}
+.plaque h2{font-size:clamp(18px,3.4vw,27px);font-weight:900;letter-spacing:.14em;color:var(--ink)}
+.plaque p{margin-top:2px;font-size:clamp(9px,1.4vw,11.5px);letter-spacing:.18em;color:#6b5a2e}
+.plaque .s{color:var(--gold2);font-size:clamp(16px,2.6vw,22px);filter:drop-shadow(0 0 5px rgba(224,166,76,.7))}
 
 /* scenery */
 .land{position:absolute;left:0;right:0;bottom:0;z-index:1;pointer-events:none;line-height:0}
 .land svg{width:100%;height:auto;display:block}
-.house{position:absolute;left:7%;bottom:9vh;z-index:3;width:min(24vw,190px);pointer-events:auto;
-  cursor:pointer;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28));transition:transform .3s ease}
-.house:hover{transform:translateY(-4px) scale(1.03)}
-.house .door{animation:doorGlow 2.6s ease-in-out infinite}
-@keyframes doorGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(255,217,138,.55))}50%{filter:drop-shadow(0 0 18px rgba(255,217,138,.95))}}
-.house-label{position:absolute;left:50%;top:-24px;transform:translateX(-50%);font-size:12px;letter-spacing:.2em;
-  color:var(--gold);background:rgba(22,26,44,.55);padding:3px 10px;border-radius:999px;white-space:nowrap}
-.tree{position:absolute;bottom:6vh;z-index:2;pointer-events:none}
+.tree{position:absolute;bottom:5vh;z-index:2;pointer-events:none}
 .tree svg{width:100%;height:auto}
+.cloud{position:absolute;z-index:1;pointer-events:none;opacity:.92}
+.cloud svg{width:100%;height:auto}
 
-/* lantern buttons */
-.lantern{position:absolute;z-index:8;display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;padding:0;color:inherit;font-family:inherit}
-.lantern .glow{width:clamp(44px,6.5vw,64px);aspect-ratio:1;display:grid;place-items:center;border-radius:50%;
-  position:relative;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-.lantern .glow svg{width:78%;height:78%;position:relative;z-index:2}
-.lantern .glow::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(255,217,138,.5),transparent 68%);filter:blur(2px);animation:lanternPulse 2.8s ease-in-out infinite}
-.lantern .glow::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:14px;background:linear-gradient(rgba(255,246,223,.6),transparent)}
-@keyframes lanternPulse{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.08)}}
-.lantern:hover .glow{transform:translateY(-5px) scale(1.12)}
-.lantern:active .glow{transform:scale(.92)}
-.lantern .lab{font-size:clamp(10px,1.6vw,12px);letter-spacing:.14em;color:var(--cream);background:rgba(20,26,48,.5);
-  padding:2px 9px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(4px)}
-.lantern .no{font-size:clamp(12px,1.8vw,15px);font-weight:900;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+/* ornaments */
+.orb{position:absolute;z-index:8;display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;color:inherit;font-family:inherit}
+.orb .medal{width:clamp(52px,7.2vw,72px);aspect-ratio:80/104;position:relative;transition:transform .28s cubic-bezier(.34,1.56,.64,1)}
+.orb .medal svg{width:100%;height:100%}
+.orb .medal::after{content:"";position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(255,217,138,.5),transparent 66%);filter:blur(3px);animation:glowP 2.8s ease-in-out infinite;z-index:-1}
+@keyframes glowP{0%,100%{opacity:.5;transform:scale(.95)}50%{opacity:1;transform:scale(1.1)}}
+.orb:hover .medal{transform:translateY(-6px) scale(1.1) rotate(-2deg)}
+.orb:active .medal{transform:scale(.92)}
+.orb .lab{font-size:clamp(9.5px,1.5vw,12px);letter-spacing:.1em;color:var(--cream);background:rgba(19,26,48,.55);
+  padding:2px 10px;border-radius:999px;white-space:nowrap;backdrop-filter:blur(4px);border:1px solid rgba(255,217,138,.3)}
+.orb .lab b{color:var(--gold);font-weight:900}
 
-/* modal */
-#modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.3s}
+/* gift (ending) */
+.gift{position:absolute;z-index:8;display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;color:inherit;font-family:inherit}
+.gift .box{width:clamp(72px,10vw,104px);position:relative;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.gift .box svg{width:100%;height:auto}
+.gift .box::after{content:"";position:absolute;left:10%;right:10%;top:22%;height:60%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,217,138,.55),transparent 70%);filter:blur(6px);z-index:-1;animation:glowP 2.6s ease-in-out infinite}
+.gift:hover .box{transform:translateY(-7px) scale(1.07)}
+.gift:active .box{transform:scale(.94)}
+.gift .lab{font-size:clamp(10px,1.6vw,12.5px);letter-spacing:.12em;color:var(--cream);background:rgba(19,26,48,.6);
+  padding:3px 12px;border-radius:999px;white-space:nowrap;border:1px solid rgba(255,217,138,.45);backdrop-filter:blur(4px)}
+.gift .lab b{color:var(--gold);font-weight:900}
+
+/* entrance */
+.orb,.gift{opacity:0;transform:translateY(18px)}
+.orb.in,.gift.in{animation:enter .7s cubic-bezier(.34,1.4,.64,1) forwards}
+@keyframes enter{to{opacity:1;transform:translateY(0)}}
+
+/* ---- modal ---- */
+#modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.3s}
 #modal.on{opacity:1;visibility:visible}
-#modal .backdrop{position:absolute;inset:0;background:rgba(12,16,30,.66);backdrop-filter:blur(6px)}
-.modal-card{
-  position:relative;z-index:2;width:min(640px,94vw);max-height:82vh;display:flex;flex-direction:column;
-  background:var(--card);color:var(--ink);border-radius:26px;overflow:hidden;
-  box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 0 6px rgba(255,217,138,.35);
-  transform:translateY(24px) scale(.94);transition:transform .35s cubic-bezier(.34,1.4,.64,1);
-}
+#modal .backdrop{position:absolute;inset:0;background:rgba(10,13,26,.68);backdrop-filter:blur(6px)}
+.modal-card{position:relative;z-index:2;width:min(680px,94vw);max-height:82vh;display:flex;flex-direction:column;
+  background:var(--card,#fffdf4);color:var(--ink);border-radius:28px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 5px rgba(255,217,138,.4),0 0 0 9px rgba(255,217,138,.12);
+  transform:translateY(24px) scale(.94);transition:transform .35s cubic-bezier(.34,1.4,.64,1)}
 #modal.on .modal-card{transform:none}
-.m-head{position:relative;padding:24px 26px 18px;color:var(--cream);overflow:hidden}
+.m-head{position:relative;padding:22px 28px 16px;color:var(--cream);overflow:hidden;flex:none}
 .m-head::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--mc,#8090df),#2b3b68);z-index:0}
-.m-head .shape{position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12);z-index:0}
-.m-no{position:relative;z-index:1;font-size:12px;letter-spacing:.3em;opacity:.9}
-.m-title{position:relative;z-index:1;font-size:clamp(22px,4.6vw,30px);font-weight:900;margin-top:4px;letter-spacing:.06em}
-.m-sub{position:relative;z-index:1;font-size:13px;margin-top:6px;opacity:.85}
-.m-body{padding:20px 26px 26px;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.m-head::after{content:"";position:absolute;right:-36px;top:-50px;width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.1);z-index:0}
+.m-head .l{position:absolute;left:14px;bottom:10px;color:rgba(255,246,223,.55);font-size:44px;z-index:0;line-height:1}
+.m-no{position:relative;z-index:1;font-size:11.5px;letter-spacing:.32em;opacity:.92}
+.m-title{position:relative;z-index:1;font-size:clamp(21px,4.4vw,29px);font-weight:900;margin-top:3px;letter-spacing:.05em}
+.m-sub{position:relative;z-index:1;font-size:12.5px;margin-top:5px;opacity:.86}
+.m-body{flex:1;min-height:0;overflow:auto;padding:20px 28px 26px;display:flex;flex-direction:column;gap:13px}
 .m-body::-webkit-scrollbar{width:5px}
 .m-body::-webkit-scrollbar-thumb{background:rgba(37,35,29,.25);border-radius:4px}
-.m-h{font-size:16px;font-weight:800;color:var(--mc,#8090df);display:flex;align-items:center;gap:9px;margin-top:4px}
+.m-h{font-size:15.5px;font-weight:800;color:var(--mc,#8090df);display:flex;align-items:center;gap:9px;margin-top:3px;flex:none}
 .m-h::before{content:"";width:16px;height:3px;border-radius:3px;background:var(--mc,#8090df)}
 .m-p{line-height:1.85;font-size:14.5px;text-align:justify}
 .m-p .hl{color:var(--mc,#8090df);font-weight:700}
@@ -152,14 +169,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:c
 .m-cell{background:rgba(128,144,223,.08);border:1px solid rgba(37,35,29,.12);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.7}
 .m-cell b{display:block;color:var(--mc,#8090df);font-weight:800;margin-bottom:3px}
 .m-quote{border-left:4px solid var(--mc,#8090df);background:rgba(255,246,223,.55);padding:12px 16px;border-radius:0 14px 14px 0;font-size:14px;line-height:1.8;color:#4a4638}
-.m-close{
-  position:absolute;right:14px;top:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.5);
-  background:rgba(255,255,255,.18);color:var(--cream);font-size:18px;cursor:pointer;transition:.2s;backdrop-filter:blur(4px);
-}
+.m-close{position:absolute;right:14px;top:13px;z-index:3;width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.16);color:var(--cream);font-size:17px;cursor:pointer;transition:.2s;backdrop-filter:blur(4px)}
 .m-close:hover{background:rgba(255,255,255,.32);transform:rotate(90deg)}
 
-/* overview */
-#map{position:fixed;inset:0;z-index:55;background:rgba(10,14,26,.7);backdrop-filter:blur(12px);display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.3s}
+/* ---- map ---- */
+#map{position:fixed;inset:0;z-index:55;background:rgba(9,12,24,.72);backdrop-filter:blur(12px);display:grid;place-items:center;padding:22px;opacity:0;visibility:hidden;transition:.3s}
 #map.on{opacity:1;visibility:visible}
 .map-inner{width:min(760px,94vw);max-height:84vh;overflow:auto;text-align:center}
 .map-inner h3{font-size:22px;letter-spacing:.2em;margin-bottom:18px;color:var(--cream);font-weight:900}
@@ -172,97 +187,123 @@ header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:c
 .map-close{position:absolute;right:20px;top:16px;background:none;border:1px solid rgba(255,246,223,.4);color:var(--cream);width:38px;height:38px;border-radius:50%;font-size:17px;cursor:pointer}
 .map-close:hover{border-color:var(--gold);color:var(--gold)}
 
-/* footer */
-footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 20px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;
-  background:linear-gradient(0deg,rgba(12,17,32,.7),transparent)}
-.hint{font-size:11px;letter-spacing:.16em;color:rgba(255,246,223,.66);display:flex;gap:14px;align-items:center}
+/* ---- footer ---- */
+footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 24px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:linear-gradient(0deg,rgba(10,14,26,.55),transparent)}
+.hint{font-size:11px;letter-spacing:.16em;color:rgba(255,246,223,.68);display:flex;gap:14px;align-items:center}
 .hint kbd{border:1px solid rgba(255,246,223,.35);border-radius:6px;padding:1px 7px;font-size:10.5px;color:var(--cream);background:rgba(255,255,255,.06);font-family:inherit}
 .dots{display:flex;gap:8px;align-items:center}
-.dot-btn{width:9px;height:9px;border-radius:50%;background:rgba(255,246,223,.25);border:none;cursor:pointer;transition:.3s;padding:0}
+.dot-btn{width:9px;height:9px;border-radius:50%;background:rgba(255,246,223,.28);border:none;cursor:pointer;transition:.3s;padding:0}
 .dot-btn.on{background:var(--gold);box-shadow:0 0 10px var(--gold);transform:scale(1.3)}
 
-/* scene entrance anim */
-.lantern{opacity:0;transform:translateY(16px)}
-.lantern.in{animation:lanternIn .7s cubic-bezier(.34,1.4,.64,1) forwards}
-@keyframes lanternIn{to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+  .frame i{width:16px;height:16px;border-width:2px}
+  .orb .lab{max-width:86px;overflow:hidden;text-overflow:ellipsis}
+}
 </style>
 </head>
 <body>
+<div class="frame"><i></i><i></i><i></i><i></i></div>
 <canvas id="stars"></canvas>
 <div class="moon">
   <svg viewBox="0 0 100 100" width="100%" height="100%">
-    <defs>
-      <radialGradient id="moonG" cx="35%" cy="35%" r="80%">
-        <stop offset="0%" stop-color="#fff7d6"/><stop offset="70%" stop-color="#ffe1a0"/><stop offset="100%" stop-color="#f7c873"/>
-      </radialGradient>
-    </defs>
-    <circle cx="50" cy="50" r="42" fill="url(#moonG)"/>
-    <circle cx="36" cy="40" r="7" fill="#f0bd6f" opacity=".55"/>
-    <circle cx="62" cy="58" r="5" fill="#f0bd6f" opacity=".45"/>
-    <circle cx="55" cy="32" r="3.4" fill="#f0bd6f" opacity=".4"/>
-    <circle cx="41" cy="64" r="4.4" fill="#f0bd6f" opacity=".5"/>
-    <path d="M30 74 Q50 88 72 76" stroke="#e8b25c" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/>
+    <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,217,138,.35)" stroke-width="1.4" stroke-dasharray="3 6"/>
+    <circle cx="50" cy="50" r="40" fill="url(#mG)"/>
+    <circle cx="37" cy="38" r="6.4" fill="#f0bd6f" opacity=".5"/>
+    <circle cx="61" cy="56" r="4.6" fill="#f0bd6f" opacity=".42"/>
+    <circle cx="54" cy="30" r="3" fill="#f0bd6f" opacity=".36"/>
+    <circle cx="42" cy="66" r="4" fill="#f0bd6f" opacity=".46"/>
+    <path d="M32 76 Q50 88 70 74" stroke="#e8b25c" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".6"/>
+    <defs><radialGradient id="mG" cx="35%" cy="32%" r="82%">
+      <stop offset="0%" stop-color="#fff8dc"/><stop offset="62%" stop-color="#ffe3a6"/><stop offset="100%" stop-color="#f4c06e"/>
+    </radialGradient></defs>
   </svg>
 </div>
 <div id="light"></div>
 
 <!-- Cover -->
 <div id="cover">
+  <div class="cover-frame"><i></i><i></i><i></i><i></i></div>
   <div class="sky">
     <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" width="100%" height="100%">
-      <path d="M0 640 Q180 540 380 610 Q560 670 760 590 Q980 500 1160 590 Q1320 660 1440 620 L1440 900 L0 900Z" fill="#27425f" opacity=".55"/>
-      <path d="M0 700 Q240 610 500 690 Q760 760 980 670 Q1200 600 1440 680 L1440 900 L0 900Z" fill="#2f5d3b" opacity=".8"/>
+      <path d="M0 620 Q180 520 380 590 Q560 650 760 570 Q980 480 1160 570 Q1320 640 1440 600 L1440 900 L0 900Z" fill="#27425f" opacity=".5"/>
+      <path d="M0 690 Q240 600 500 680 Q760 750 980 660 Q1200 590 1440 670 L1440 900 L0 900Z" fill="#2f5d3b" opacity=".8"/>
       <path d="M0 760 Q260 700 560 770 Q820 830 1080 740 Q1280 680 1440 740 L1440 900 L0 900Z" fill="#4c8a5a"/>
     </svg>
   </div>
   <div class="inner">
     <div class="kicker">北辰青年 · AI 时代个人说明书 · 插画版</div>
-    <h1>AI 时代<br>个人说明书</h1>
-    <div class="sub">蔡依凌 · Elaine</div>
+    <div class="title-plaque">
+      <h1>AI 时代<br>个人说明书</h1>
+      <div class="sub">蔡依凌 · Elaine</div>
+    </div>
     <div class="meta">香港大学 · 数学 · 统计 · 上海 ⇄ 香港</div>
-    <div class="enter">进入花园 →</div>
+    <div class="enter">进入故事 ✦</div>
   </div>
 </div>
 
 <!-- Header -->
 <header>
-  <div class="brand"><span class="star">✦</span><span>Elaine 的个人说明书</span><span class="en">ILLUSTRATED EDITION</span></div>
+  <div class="brand"><span class="star">✦</span><span>Elaine 的说明书 · 插画版</span><span class="en">STORYBOOK EDITION</span></div>
   <div class="spacer"></div>
   <button class="chip" id="musicBtn" title="背景音乐"><span class="eq"><i></i><i></i><i></i></span>音乐</button>
-  <button class="chip" id="mapBtn" title="花园地图">🗺️ 地图</button>
+  <button class="chip" id="mapBtn" title="故事地图">🗺️ 地图</button>
 </header>
 
 <!-- Scene -->
 <main id="scene">
-  <div class="scene-title">
-    <h2>夜航 · 花园</h2>
-    <p>移动光标 · 点亮花园 · 点击发光的灯笼</p>
+  <div class="plaque">
+    <span class="s">✦</span>
+    <div><h2>夜航 · 花园</h2><p>移动光标点亮夜色 · 轻点星梦挂饰</p></div>
+    <span class="s">✦</span>
   </div>
+
   <div class="land">
     <svg viewBox="0 0 1440 360" preserveAspectRatio="none" width="100%" height="100%">
-      <path d="M0 360 L0 250 Q180 170 360 240 Q520 300 700 230 Q880 160 1060 235 Q1220 295 1440 225 L1440 360Z" fill="#2f5d3b" opacity=".85"/>
-      <path d="M0 360 L0 290 Q200 230 420 290 Q640 350 900 280 Q1120 215 1440 285 L1440 360Z" fill="#3d7a49"/>
-      <path d="M0 360 L0 320 Q260 280 560 330 Q820 372 1120 320 Q1300 285 1440 325 L1440 360Z" fill="#4c8a5a"/>
+      <path d="M0 360 L0 250 Q180 172 360 242 Q520 302 700 232 Q880 164 1060 238 Q1220 296 1440 226 L1440 360Z" fill="#2f5d3b" opacity=".85"/>
+      <path d="M0 360 L0 292 Q200 234 420 292 Q640 350 900 282 Q1120 218 1440 286 L1440 360Z" fill="#3d7a49"/>
+      <path d="M0 360 L0 322 Q260 282 560 330 Q820 372 1120 322 Q1300 288 1440 326 L1440 360Z" fill="#4c8a5a"/>
+      <circle cx="180" cy="308" r="4" fill="#7fbf82" opacity=".8"/><circle cx="360" cy="330" r="3" fill="#7fbf82" opacity=".7"/>
+      <circle cx="560" cy="346" r="4" fill="#7fbf82" opacity=".8"/><circle cx="760" cy="324" r="3" fill="#7fbf82" opacity=".7"/>
+      <circle cx="960" cy="342" r="4" fill="#7fbf82" opacity=".8"/><circle cx="1180" cy="318" r="3" fill="#7fbf82" opacity=".7"/>
     </svg>
   </div>
-  <!-- house (section 08) -->
-  <button class="house" id="houseBtn" title="终点站">
-    <span class="house-label">🏠 终点站 · 想对你说</span>
-    <svg viewBox="0 0 200 150" width="100%">
-      <path d="M20 78 L100 22 L180 78Z" fill="#e07b4f"/>
-      <path d="M20 78 L100 22 L180 78 L176 84 L100 30 L24 84Z" fill="#c95f36"/>
-      <rect x="38" y="76" width="124" height="60" rx="6" fill="#ffe9bd"/>
-      <rect x="52" y="90" width="34" height="26" rx="3" fill="#8cc084"/>
-      <rect x="114" y="90" width="34" height="26" rx="3" fill="#8cc084"/>
-      <rect x="52" y="90" width="34" height="26" rx="3" fill="#2f5d3b" opacity=".35"/>
-      <rect x="114" y="90" width="34" height="26" rx="3" fill="#2f5d3b" opacity=".35"/>
-      <rect x="86" y="106" width="28" height="30" rx="14" fill="#b8774a"/>
-      <circle cx="108" cy="121" r="2.6" fill="#ffe9bd"/>
-      <rect x="90" y="16" width="20" height="26" rx="3" fill="#c95f36"/>
-      <circle cx="100" cy="29" r="6" fill="#ffd98a" class="door"/>
+
+  <!-- pond -->
+  <div class="land" style="z-index:1">
+    <svg viewBox="0 0 1440 360" preserveAspectRatio="none" width="100%" height="100%">
+      <ellipse cx="1180" cy="330" rx="150" ry="34" fill="#2a4a7a" opacity=".8"/>
+      <ellipse cx="1180" cy="326" rx="120" ry="24" fill="none" stroke="rgba(255,246,223,.28)" stroke-width="2"/>
+      <ellipse cx="1180" cy="334" rx="90" ry="12" fill="none" stroke="rgba(255,246,223,.2)" stroke-width="1.5"/>
+      <path d="M1128 322 q6 6 0 12 M1224 318 q5 5 0 10 M1170 336 q6 6 0 12" stroke="rgba(255,246,223,.4)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
     </svg>
-  </button>
-  <!-- lanterns injected here -->
+  </div>
+
+  <!-- trees -->
+  <div class="tree" style="left:2%;width:min(16vw,130px)">
+    <svg viewBox="0 0 160 200">
+      <rect x="72" y="120" width="16" height="60" rx="5" fill="#6b4a2f"/>
+      <ellipse cx="80" cy="86" rx="52" ry="42" fill="#2f6b3d"/>
+      <ellipse cx="80" cy="78" rx="40" ry="32" fill="#3f8a4e"/>
+      <ellipse cx="60" cy="92" rx="16" ry="12" fill="#52a05f"/>
+      <ellipse cx="100" cy="88" rx="16" ry="12" fill="#52a05f"/>
+      <circle cx="66" cy="70" r="3" fill="#ffd98a" opacity=".8"/>
+      <circle cx="98" cy="92" r="2.4" fill="#ffd98a" opacity=".7"/>
+    </svg>
+  </div>
+  <div class="tree" style="right:3%;bottom:6vh;width:min(13vw,104px)">
+    <svg viewBox="0 0 160 200">
+      <path d="M80 200 Q76 150 80 120" stroke="#5c3d24" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <circle cx="54" cy="104" r="30" fill="#2f6b3d"/>
+      <circle cx="106" cy="108" r="26" fill="#3f8a4e"/>
+      <circle cx="80" cy="84" r="30" fill="#4d9a5a"/>
+      <circle cx="80" cy="84" r="22" fill="#63ad6d"/>
+      <circle cx="64" cy="76" r="3" fill="#ffd98a" opacity=".8"/>
+      <circle cx="96" cy="90" r="2.4" fill="#ffd98a" opacity=".7"/>
+    </svg>
+  </div>
+
+  <!-- orbs + gift injected here -->
 </main>
 
 <!-- Modal -->
@@ -271,7 +312,7 @@ footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 20px 14px;
   <div class="modal-card" id="modalCard">
     <button class="m-close" id="modalClose">✕</button>
     <div class="m-head" id="mHead">
-      <div class="shape"></div>
+      <div class="l">✦</div>
       <div class="m-no" id="mNo"></div>
       <div class="m-title" id="mTitle"></div>
       <div class="m-sub" id="mSub"></div>
@@ -280,11 +321,11 @@ footer{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 20px 14px;
   </div>
 </div>
 
-<!-- Overview map -->
+<!-- Map -->
 <div id="map">
   <button class="map-close" id="mapClose">✕</button>
   <div class="map-inner">
-    <h3>🗺️ 花园地图</h3>
+    <h3>🗺️ 故事地图</h3>
     <div class="map-grid" id="mapGrid"></div>
   </div>
 </div>
@@ -359,18 +400,43 @@ async function loadContent(){
 }
 
 /* ================= Scene ================= */
-const lanternColors = ["#8090df","#8cc084","#a9e5cf","#ef779d","#f58b2a","#ffd98a","#b39ddb"];
-function lanternSVG(c){
-  return '<svg viewBox="0 0 64 64" width="100%" height="100%">' +
-    '<path d="M32 4 C18 16 10 26 10 38 a22 22 0 0 0 44 0 C54 26 46 16 32 4Z" fill="url(#lanternG)" stroke="rgba(255,246,223,.55)" stroke-width="1.6"/>' +
-    '<path d="M32 12 C24 21 19 28 19 37 a13 13 0 0 0 26 0 C45 28 40 21 32 12Z" fill="rgba(255,246,223,.28)"/>' +
-    '<rect x="29" y="1" width="6" height="7" rx="2" fill="#c9b27a"/>' +
-    '<path d="M22 49 q10 8 20 0" stroke="rgba(255,246,223,.6)" stroke-width="1.4" fill="none" stroke-linecap="round"/>' +
-    '<defs><radialGradient id="lanternG" cx="35%" cy="30%" r="85%"><stop offset="0%" stop-color="#fff3cf"/><stop offset="55%" stop-color="' + c + '"/><stop offset="100%" stop-color="#7a4f2f"/></radialGradient></defs>' +
+const orbColors = ["#8090df","#8cc084","#a9e5cf","#ef779d","#f58b2a","#ffd98a","#b39ddb"];
+function medallionSVG(c){
+  let dots = "";
+  for(let a=0;a<12;a++){
+    const ang = a*30*Math.PI/180;
+    dots += '<circle cx="' + (40+28*Math.cos(ang)).toFixed(1) + '" cy="' + (54+28*Math.sin(ang)).toFixed(1) + '" r="1.5" fill="rgba(255,246,223,.75)"/>';
+  }
+  return '<svg viewBox="0 0 80 104" width="100%" height="100%">' +
+    '<line x1="40" y1="2" x2="40" y2="15" stroke="rgba(255,246,223,.55)" stroke-width="1.4" stroke-dasharray="3 3"/>' +
+    '<circle cx="40" cy="56" r="34" fill="none" stroke="rgba(255,246,223,.32)" stroke-width="1" stroke-dasharray="2 6"/>' +
+    '<circle cx="40" cy="56" r="28" fill="none" stroke="#f3d488" stroke-width="2.2"/>' +
+    dots +
+    '<circle cx="40" cy="56" r="22" fill="url(#orbG)"/>' +
+    '<path d="M40 44 l4 8.6 9 1.3 -6.5 6.4 1.5 9 -8 -4.2 -8 4.2 1.5 -9 -6.5 -6.4 9 -1.3Z" fill="#fff6df"/>' +
+    '<circle cx="61" cy="36" r="2" fill="#fff" opacity=".9"/>' +
+    '<circle cx="17" cy="72" r="1.6" fill="#fff" opacity=".7"/>' +
+    '<defs><radialGradient id="orbG" cx="38%" cy="32%" r="80%"><stop offset="0%" stop-color="#fff6df"/><stop offset="48%" stop-color="' + c + '"/><stop offset="100%" stop-color="#4e2f66"/></radialGradient></defs>' +
     '</svg>';
 }
-const lanternPos = [
-  [8, 34], [26, 18], [47, 12], [67, 16], [84, 30], [24, 46], [72, 46]
+function giftSVG(){
+  return '<svg viewBox="0 0 150 140" width="100%">' +
+    '<circle cx="75" cy="84" r="58" fill="rgba(255,217,138,.16)"/>' +
+    '<rect x="30" y="74" width="90" height="52" rx="8" fill="url(#boxG)"/>' +
+    '<path d="M22 78 L128 78 L117 56 Q75 44 33 56Z" fill="#ef8ba7" stroke="#d05f82" stroke-width="1.6"/>' +
+    '<rect x="22" y="52" width="106" height="13" rx="6" fill="#ef8ba7"/>' +
+    '<rect x="68" y="52" width="14" height="74" rx="4" fill="#f7d488"/>' +
+    '<rect x="30" y="82" width="90" height="8" rx="4" fill="#f7d488" opacity=".75"/>' +
+    '<path d="M75 52 C58 34 40 40 45 53 C49 63 63 60 75 52Z" fill="#f7d488" stroke="#e0a64c" stroke-width="1.4"/>' +
+    '<path d="M75 52 C92 34 110 40 105 53 C101 63 87 60 75 52Z" fill="#f7d488" stroke="#e0a64c" stroke-width="1.4"/>' +
+    '<circle cx="75" cy="53" r="6.5" fill="#ffd98a" stroke="#e0a64c" stroke-width="1.4"/>' +
+    '<path d="M28 40 l2.4 5.6 5.6 2.4 -5.6 2.4 -2.4 5.6 -2.4 -5.6 -5.6 -2.4 5.6 -2.4Z" fill="#fff6df"/>' +
+    '<path d="M124 32 l2 4.6 4.6 2 -4.6 2 -2 4.6 -2 -4.6 -4.6 -2 4.6 -2Z" fill="#fff6df"/>' +
+    '<defs><linearGradient id="boxG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd0dd"/><stop offset="100%" stop-color="#e06a8a"/></linearGradient></defs>' +
+    '</svg>';
+}
+const orbPos = [
+  [9, 34], [27, 25], [48, 21], [69, 25], [87, 34], [29, 52], [70, 52]
 ];
 function buildScene(){
   const scene = document.getElementById("scene");
@@ -378,39 +444,44 @@ function buildScene(){
   const mapGrid = document.getElementById("mapGrid");
   dots.innerHTML = ""; mapGrid.innerHTML = "";
   DATA.forEach((s, i) => {
-    const acc = s.acc || lanternColors[i % lanternColors.length];
+    const acc = s.acc || orbColors[i % orbColors.length];
     if(i < DATA.length - 1){
-      // lantern (sections, ending is the house)
-      const lan = document.createElement("button");
-      lan.className = "lantern";
-      lan.style.left = lanternPos[i % lanternPos.length][0] + "%";
-      lan.style.top = lanternPos[i % lanternPos.length][1] + "%";
-      lan.style.setProperty("--mc", acc);
-      lan.innerHTML = '<span class="glow" style="color:' + acc + '">' + lanternSVG(acc) + '</span>' +
-        '<span class="lab"><span class="no">' + s.no + '</span> · ' + esc(s.title.slice(0, 6)) + '</span>';
-      lan.addEventListener("click", () => openModal(i));
-      lan.addEventListener("mouseenter", () => SFX.hover());
-      lan.style.animationDelay = (i * 0.12) + "s";
-      lan.classList.add("in");
-      scene.appendChild(lan);
+      const orb = document.createElement("button");
+      orb.className = "orb";
+      orb.style.left = orbPos[i][0] + "%";
+      orb.style.top = orbPos[i][1] + "%";
+      orb.style.setProperty("--mc", acc);
+      orb.innerHTML = '<span class="medal">' + medallionSVG(acc) + '</span>' +
+        '<span class="lab"><b>' + s.no + '</b> ' + esc(s.title.slice(0, 5)) + '</span>';
+      orb.addEventListener("click", () => openModal(i));
+      orb.addEventListener("mouseenter", () => SFX.hover());
+      orb.style.animationDelay = (i * 0.12) + "s";
+      orb.classList.add("in");
+      scene.appendChild(orb);
     }
-
     const dot = document.createElement("button");
     dot.className = "dot-btn";
     dot.title = s.no + " · " + s.title;
     dot.addEventListener("click", () => openModal(i));
     dots.appendChild(dot);
-
     const item = document.createElement("button");
     item.className = "map-item";
     item.innerHTML = '<div class="n">' + s.no + '</div><div class="t">' + esc(s.title) + '</div><div class="d">' + esc(s.sub) + '</div>';
     item.addEventListener("click", () => { closeMap(); openModal(i); });
     mapGrid.appendChild(item);
   });
-  // house = last scene (ending)
-  const houseBtn = document.getElementById("houseBtn");
-  houseBtn.addEventListener("click", () => openModal(DATA.length - 1));
-  houseBtn.addEventListener("mouseenter", () => SFX.hover());
+  // gift (ending)
+  const gift = document.createElement("button");
+  gift.className = "gift";
+  gift.style.left = "50%";
+  gift.style.top = "64%";
+  gift.innerHTML = '<span class="box">' + giftSVG() + '</span>' +
+    '<span class="lab"><b>08</b> 终点站 · 想对你说</span>';
+  gift.addEventListener("click", () => openModal(DATA.length - 1));
+  gift.addEventListener("mouseenter", () => SFX.hover());
+  gift.style.animationDelay = (DATA.length * 0.12) + "s";
+  gift.classList.add("in");
+  scene.appendChild(gift);
 }
 
 /* ================= Modal ================= */
@@ -431,7 +502,9 @@ function openModal(i){
   document.getElementById("mNo").textContent = s.no;
   document.getElementById("mTitle").textContent = s.title;
   document.getElementById("mSub").textContent = s.sub;
-  document.getElementById("mBody").innerHTML = s.blocks.map(blkHTML).join("");
+  const body = document.getElementById("mBody");
+  body.innerHTML = s.blocks.map(blkHTML).join("");
+  body.scrollTop = 0;
   document.querySelectorAll(".dot-btn").forEach((el,idx)=>el.classList.toggle("on", idx===i));
   modal.classList.add("on");
   SFX.open();
